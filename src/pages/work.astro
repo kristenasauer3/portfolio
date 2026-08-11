@@ -1,4 +1,5 @@
 ---
+// src/pages/work.astro
 import Navigation from '../components/Navigation.astro';
 ---
 <!DOCTYPE html>
@@ -20,9 +21,12 @@ import Navigation from '../components/Navigation.astro';
       margin: 0 auto;
       padding: 4rem 2rem;
     }
-    h1 { font-size: 2.5rem; margin-bottom: 3rem; }
+    h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 3rem; 
+    }
     
-    /* Accessible 2-column grid pattern */
+    /* Accessible grid pattern layout */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -44,13 +48,23 @@ import Navigation from '../components/Navigation.astro';
       justify-content: center;
       color: #666;
     }
-    .project-card h2 { font-size: 1.5rem; margin: 0 0 0.5rem 0; }
-    .project-card p { color: #555; margin: 0; font-size: 1.1rem; }
-    .project-card:hover h2, .project-card:focus h2 { text-decoration: underline; }
+    .project-card h2 { 
+      font-size: 1.5rem; 
+      margin: 0 0 0.5rem 0; 
+    }
+    .project-card p { 
+      color: #555; 
+      margin: 0; 
+      font-size: 1.1rem; 
+    }
+    .project-card:hover h2, .project-card:focus h2 { 
+      text-decoration: underline; 
+    }
   </style>
 </head>
 <body>
 
+  <!-- Reusable Navigation Component -->
   <Navigation />
 
   <main id="main-content" class="main-container">
@@ -58,20 +72,21 @@ import Navigation from '../components/Navigation.astro';
     
     <div class="portfolio-grid">
       <!-- Project 1 Card -->
-      <a href="/portfolio/case-studies/project-one/" class="project-card">
-        <div class="image-placeholder">Drag mockup image here inside Finder later</div>
+      <a href="/portfolio/case-studies/nike-rebrand/" class="project-card">
+        <div class="image-placeholder">Project 1 Mockup (Drag via Finder)</div>
         <h2>Brand Identity Overhaul</h2>
         <p>Visual Systems / Creative Direction</p>
       </a>
 
       <!-- Project 2 Card -->
-      <a href="/portfolio/case-studies/project-two/" class="project-card">
-        <div class="image-placeholder">Project 2 Layout Preview</div>
+      <a href="/portfolio/case-studies/magazine-layout/" class="project-card">
+        <div class="image-placeholder">Project 2 Mockup (Drag via Finder)</div>
         <h2>Editorial Magazine Design</h2>
         <p>Print / Typography Layout</p>
       </a>
 
-      <!-- Repeat this pattern block below to add your remaining 6 projects! -->
+      <!-- You will paste the code blocks for projects 3 through 8 right below this line! -->
+
     </div>
   </main>
 
