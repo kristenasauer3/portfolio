@@ -1,0 +1,47 @@
+---
+import Navigation from '../components/Navigation.astro';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Portfolio</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #1a1a1a;
+    }
+    .contact-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    p { font-size: 1.25rem; color: #4a4a4a; margin-bottom: 3rem; }
+    .email-link {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-decoration: underline;
+    }
+    .email-link:hover, .email-link:focus { color: #000000; }
+  </style>
+</head>
+<body>
+
+  <Navigation />
+
+  <main id="main-content" class="contact-container">
+    <h1>Let's work together.</h1>
+    <p>Available for freelance contracts, full-time agency roles, and layout consultations.</p>
+    
+    <!-- Large, accessible target for easy clicking -->
+    <a href="mailto:hello@yourdomain.com" class="email-link">hello@yourdomain.com</a>
+  </main>
+
+</body>
+</html>
