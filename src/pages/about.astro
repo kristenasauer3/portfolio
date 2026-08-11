@@ -1,0 +1,48 @@
+---
+import Navigation from '../components/Navigation.astro';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me | Portfolio</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    .about-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    h1 { font-size: 2.5rem; margin: 0; }
+    .bio-content { font-size: 1.2rem; color: #222; }
+    .bio-content p { margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+
+  <Navigation />
+
+  <main id="main-content" class="about-container">
+    <header>
+      <h1>About Me</h1>
+    </header>
+    
+    <article class="bio-content">
+      <p>I am a graphic designer driven by form, grid structures, and accessibility. My academic training in web design taught me how to combine traditional graphic layout rules with solid, clean code frameworks.</p>
+      <p>When designing visual experiences, my goal is always to make sure content is legible, impactful, and expressive.</p>
+    </article>
+  </main>
+
+</body>
+</html>
