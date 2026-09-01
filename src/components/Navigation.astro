@@ -1,0 +1,31 @@
+---
+// Navigation component for consistent navigation across pages
+---
+
+<nav class="navigation">
+  <a href="/portfolio/" class="nav-link">Home</a>
+  <a href="/portfolio/work/" class="nav-link">Work</a>
+  <a href="/portfolio/about/" class="nav-link">About</a>
+  <a href="/portfolio/contact/" class="nav-link">Contact</a>
+</nav>
+
+<style>
+  .navigation {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #666;
+  }
+</style>

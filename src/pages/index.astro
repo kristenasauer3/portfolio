@@ -1,5 +1,5 @@
 ---
-// This is your main homepage file!
+import Navigation from '../components/Navigation.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -10,44 +10,91 @@
   <style>
     body {
       font-family: system-ui, sans-serif;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 3rem 1.5rem;
       background-color: #ffffff;
       color: #1a1a1a;
     }
-    h1 { font-size: 2.5rem; }
-    .project-link {
+    h1 { 
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero {
+      margin-bottom: 3rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .cta-link {
       display: inline-block;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       padding: 0.75rem 1.5rem;
       background-color: #1a1a1a;
       color: #ffffff;
       text-decoration: none;
       border-radius: 4px;
       font-weight: 600;
+      transition: background-color 0.2s ease;
     }
-    .project-link:hover {
+    .cta-link:hover {
       background-color: #444444;
+    }
+    .project-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+    }
+    .project-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
+  <Navigation />
 
-  <header>
-    <h1>Welcome to My Portfolio</h1>
-    <p>I am a graphic designer specializing in layout and visual systems.</p>
+  <header class="hero">
+    <h1>Designing for people.</h1>
+    <p>I'm Kristen, a graphic designer specializing in web design, UX/UI, and accessibility. I create digital experiences that look and feel good.</p>
+    <a href="/portfolio/work/" class="cta-link">View My Work →</a>
+    <a href="/portfolio/about/" class="cta-link">More About Me →</a>
   </header>
 
-  <main>
-    <h2>Selected Work</h2>
-    <p>Check out my latest client case study below:</p>
-    
-    <!-- This links directly to the project page we made in the last step! -->
-    <a href="/portfolio/case-studies/project-one/" class="project-link">
-      View Case Study: Brand Identity Overhaul
-    </a>
-  </main>
+<!-- Section 1: Intro / What I Do -->
+<section class="intro-section">
+  <h2>Good design should work for everyone.</h2>
+  <p>Accessibility isn’t something I add at the end of a project. It’s part of my approach from the beginning. Whether I’m building a website, developing a brand, or even just picking a font, I’m always thinking about how someone will actually experience it.</p>
+</section>
+
+<!-- Section 2: Specialties -->
+<section class="specialties-section">
+  <h2>What I do</h2>
+  <h3>Web Design</h3>
+  <p>Websites designed to be easy to navigate, engaging, and accessible across devices.</p>
+  <h3>UX / UI</h3>
+  <p>Turning ideas into digital experiences. I focus on clear structure, intuitive interactions, and user-centered design.</p>
+  <h3>Accessibility</h3>
+  <p>Designing for all. From visual hierarchy and color contrast to navigation, interaction, and content, I consider accessibility throughout the process.</p>
+  <h3>Graphic Design</h3>
+  <p>Brand identities, visual systems, and everything in between. I like making things look good and making sure they look that way for a reason.</p>
+</section>
+
+<!-- Section 3: Featured Work -->
+<section class="featured-section">
+  <h2>A few things I’ve made</h2>
+  <p>A collection of websites, identities, and interactive experiences created with exploration, intention, and probably way too many tabs open.</p>
+  <a href="/portfolio/work/" class="cta-link">See All Work →</a>
+</section>
+
+<!-- Section 4: Closing CTA -->
+<section class="closing-section">
+  <h2>Let’s make something that works.</h2>
+  <p>Have a project, opportunity, or idea? I’d love to hear about it.</p>
+  <a href="/portfolio/contact/" class="cta-link">Get in Touch →</a>
 
 </body>
 </html>
