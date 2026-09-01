@@ -68,28 +68,46 @@ import Navigation from '../components/Navigation.astro';
   <Navigation />
 
   <main id="main-content" class="main-container">
-    <h1>Selected Work</h1>
-    
+  <!-- Section 1: Hero -->
+  <section-class="hero-section">
+    <h1>Selected work.</h1>
+    <p>A collection of projects exploring **web design, UX/UI, branding, and accessibility.**</p>
+  </section>
+
+  <!-- Section 2: Project Intro -->
+  <section-class="project-intro-section">
+    <h2>Design with a purpose.</h2>
+    <p>Every project starts with a problem to solve. I like figuring out how visual design, technology, and user needs can come together to create something functional and memorable.</p>
+  </section>
+
     <div class="portfolio-grid">
       <!-- Project 1 Card -->
       <a href="/portfolio/case-studies/bartenders-glossary/" class="project-card">
         <div class="image-placeholder">Bartenders Glossary Mockup</div>
         <h2>Bartenders Glossary</h2>
-        <p>Web Design / UX</p>
+        <p class="project-description">An interactive digital glossary designed to make the world of cocktails, tools, and bartending terminology easier to explore.</p>
+        <p class="project-category">Web Design <span aria-hidden="true">·</span> UX/UI <span aria-hidden="true">·</span> Interaction Design</p>
+        <a href="/portfolio/case-studies/bartenders-glossary/">View Project <span aria-hidden="true">→</span></a>
+
       </a>
 
       <!-- Project 2 Card -->
       <a href="/portfolio/case-studies/everyday-energy/" class="project-card">
         <div class="image-placeholder">Everyday Energy Mockup</div>
         <h2>Everyday Energy</h2>
-        <p>Brand Identity / Visual Systems</p>
+        <p class="project-description">A wellness mobile app concept designed to help users better understand and track their everyday habits.</p>
+        <p class="project-category">UX/UI <span aria-hidden="true">·</span> App Design <span aria-hidden="true">·</span> Prototyping</p>
+        <a href="/portfolio/case-studies/everyday-energy/">View Project <span aria-hidden="true">→</span></a>
       </a>
 
       <!-- Project 3 Card -->
       <a href="/portfolio/case-studies/hyrax-haven/" class="project-card">
         <div class="image-placeholder">Hyrax Haven Mockup</div>
         <h2>Hyrax Haven</h2>
-        <p>Web Design / Creative Direction</p>
+        <p class="project-description">A playful nonprofit-style website bringing the fascinating world of hyraxes to life through branding, storytelling, and web design.</p>
+        <p class="project-category">Web Design <span aria-hidden="true">·</span> Branding <span aria-hidden="true">·</span> UX/UI</p>
+        <a href="/portfolio/case-studies/everyday-energy/">View Project <span aria-hidden="true">→</span></a>
+
       </a>
 
       <!-- Project 4 Card -->
