@@ -1,19 +1,71 @@
 [
   {
-    "slug": "accessible-e-commerce",
-    "title": "Accessible E-Commerce Overhaul",
-    "description": "A deep dive case study analyzing the accessibility transformations made to a global retail platform.",
+    "slug": "bartenders-glossary",
+    "title": "Bartenders Glossary",
+    "description": "An accessible terminology lookup tool for professional mixologists.",
     "theme": "light-theme",
     "images": [
       {
-        "url": "/images/ecommerce-before.jpg",
-        "alt": "Screenshot of the original checkout menu lacking keyboard focus rings and visible text labels."
+        "url": "/images/bartender/hero.jpg",
+        "alt": "Desktop view of the glossary interface showing high-contrast search elements."
       },
       {
-        "url": "/images/ecommerce-after.jpg",
-        "alt": "The redesigned checkout page displaying high-contrast text and a clear keyboard focus indicator around the active input field."
+        "url": "/images/bartender/mobile.jpg",
+        "alt": "Mobile view displaying a clear, focusable navigation drawer menu."
       }
     ],
-    "htmlContent": "<p class='intro-text'>Our primary objective was achieving full WCAG AA compliance across the shopping experience.</p><section aria-labelledby='audit-heading'> <h3 id='audit-heading'>Initial Accessibility Audit</h3> <p>We discovered critical drop-offs because users navigating strictly via screen readers or keyboards could not bypass the global navigation header.</p> <div class='custom-callout' role='note' aria-label='Key finding'> <p>Implementing a semantic skip-link architecture saved users an average of 42 keystrokes per page change.</p> </div></section>"
+    "htmlContent": "<p>Write your HTML code for the Bartenders Glossary project here. You can include standard headings, paragraphs, and custom ARIA landmarks.</p>"
+  },
+  {
+    "slug": "everyday-energy",
+    "title": "Everyday Energy",
+    "description": "A web platform analyzing sustainable energy routines for residential homes.",
+    "theme": "dark-theme",
+    "images": [
+      {
+        "url": "/images/energy/dashboard.jpg",
+        "alt": "Dashboard view showing keyboard-accessible clean energy metric charts."
+      }
+    ],
+    "htmlContent": "<p>Write your HTML code for the Everyday Energy case study here.</p>"
+  },
+  {
+    "slug": "hyrax-haven",
+    "title": "Hyrax Haven",
+    "description": "Case study on an environmental conservation portal for wildlife tracking.",
+    "theme": "light-theme",
+    "images": [
+      {
+        "url": "/images/hyrax/map-view.jpg",
+        "alt": "Accessible data visualization map with alternative tabular data views underneath."
+      }
+    ],
+    "htmlContent": "<p>Write your HTML code for Hyrax Haven here.</p>"
+  },
+  {
+    "slug": "scoop-strong",
+    "title": "Scoop Strong",
+    "description": "Brand redesign and accessible digital asset delivery layout for a local creamery.",
+    "theme": "light-theme",
+    "images": [
+      {
+        "url": "/images/scoop/menu.jpg",
+        "alt": "High-contrast digital menu board design with distinct visual hierarchy."
+      }
+    ],
+    "htmlContent": "<p>Write your HTML code for Scoop Strong here.</p>"
+  },
+  {
+    "slug": "splitli",
+    "title": "Splitli",
+    "description": "An inclusive bill-splitting application optimized for screen readers and mobile touch targets.",
+    "theme": "dark-theme",
+    "images": [
+      {
+        "url": "/images/splitli/calc.jpg",
+        "alt": "Calculator interface showcasing extra large buttons exceeding WCAG target size guidelines."
+      }
+    ],
+    "htmlContent": "<p>Write your HTML code for Splitli here.</p>"
   }
 ]
