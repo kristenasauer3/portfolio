@@ -14,20 +14,28 @@
         "alt": "Mobile view displaying a clear, focusable navigation drawer menu."
       }
     ],
-    "htmlContent": "<p>Write your HTML code for the Bartenders Glossary project here. You can include standard headings, paragraphs, and custom ARIA landmarks.</p>"
+    "htmlContent": [
+    "<h1>Bartender's Glossary</h1>",
+    "<p>Bartender’s Glossary is a website that delivers a quick guide to creating the bar’s most popular drinks and using its tools. As a bartender, I used my years of knowledge to write and design the content for the page. The goal of the project was to create a space for bartenders to educate themselves on how to use their bar to its fullest potential, make drinks that shape the customer experience, and quickly display recipes for those forgetful moments during a shift.</p>",
+    "<p>The website features organized sections displaying cocktail recipes, shot recipes, and explaining bar tools. I prioritized the website to have a quick interaction time with navigation tools and a single page to decrease clicks and improve content delivery time. The website utilizes a simple color palette and typography to emphasize the content and improve user experience.</p>"
+  ]
   },
   {
     "slug": "everyday-energy",
     "title": "Everyday Energy",
     "description": "An app built to track an individual's specific daily health statistics.",
-    "theme": "dark-theme",
+    "theme": "light-theme",
     "images": [
       {
         "url": "/images/energy/dashboard.jpg",
         "alt": "Dashboard view showing keyboard-accessible clean energy metric charts."
       }
     ],
-    "htmlContent": "<p>Write your HTML code for the Everyday Energy case study here.</p>"
+    "htmlContent": [
+      "<h1>Everyday Energy</h1>",
+      "<p>Everyday Energy is an app that tracks users’ health and offers an approachable app experience. I find that many health apps can be difficult to navigate and non-comprehensive, so I created Everyday Energy to put all the important information in one spot. The goal of the project was to create a space for users to access their daily health statistics to aid in their fitness journey and make wellness easy.</p>",
+      "<p>The app features organized sections displaying statistics such as mood, sleep, steps, activity, and screen time. It also offers other services such as a mood tracker, sleep tracker, and daily journal. I prioritized the website to have a welcoming presence and intuitive navigation through its color palette, layout, and typography.</p>"
+    ]
   },
   {
     "slug": "hyrax-haven",
@@ -40,7 +48,11 @@
         "alt": "Accessible data visualization map with alternative tabular data views underneath."
       }
     ],
-    "htmlContent": "<p>Write your HTML code for Hyrax Haven here.</p>"
+    "htmlContent": [
+      "<h1>Hyrax Haven</h1>",
+      "<p>Hyrax Haven is a website for a wildlife conservation organization dedicated to raising awareness about hyraxes. These mammals are small, often overlooked, and are native to Africa and the Middle East. The goal of the project was to transform a basic informational site into a modern digital platform that encourages users to learn about the species and the conservation challenges they face.</p>",
+      "<p>Through research into non-profit websites and content strategy, I developed a site structure that prioritizes education, accessibility, and user engagement. The design organizes information into focused sections, features a clean layout, nature-inspired color palette, and structured typography that presents information in a way that is approachable and visually cohesive.</p>"
+    ]
   },
   {
     "slug": "scoop-strong",
@@ -53,19 +65,27 @@
         "alt": "High-contrast digital menu board design with distinct visual hierarchy."
       }
     ],
-    "htmlContent": "<p>Write your HTML code for Scoop Strong here.</p>"
+    "htmlContent": [
+      "<h1>Scoop Strong</h1>",
+      "<p>Scoop Strong is a custom recipe book I wrote and designed to help those on a fitness journey enjoy a sweet treat while also hitting their protein goals. The book helps users learn how to use the Ninja Creami while making high-protein ice cream recipes that support fitness goals. The goal of the project was to create a fun and practical guide that makes it easy to enjoy a treat while still focusing on balanced nutrition.</p>",
+      "<p>The book introduces the device, explains how it works, and walks readers through simple steps to create different recipes. I wrote the content to be clear and approachable so the recipes feel easy to follow and repeat. The design organizes information into introductory sections and recipe sections, and uses a clean layout that makes instructions easy to read.</p>"
+    ]
   },
   {
     "slug": "splitli",
     "title": "Splitli",
     "description": "A beginner-friendly website to help people get started on their fitness journey.",
-    "theme": "dark-theme",
+    "theme": "light-theme",
     "images": [
       {
         "url": "/images/splitli/calc.jpg",
         "alt": "Calculator interface showcasing extra large buttons exceeding WCAG target size guidelines."
       }
     ],
-    "htmlContent": "<p>Write your HTML code for Splitli here.</p>"
+    "htmlContent": [
+      "<h1>Splitli</h1>",
+      "<p>Splitli is a conceptual website for people seeking guidance on their fitness journey. Fitness progress is often mistaken for just getting active, but Splitli informs users that there is a better method that can hold users accountable, increase progress, and improve the daily experience. The goal of the project was to create a non-intimidating experience for new gym-goers and organize helpful content in a digestible and modern format.</p>",
+      "<p>The website discusses what a split is, the benefits, a glossary of gym terms, and a form to match users to their best-matching split. I prioritized accessibility and user experience in the production of the site, so users from all walks of life can engage with its content. The design features a clean layout, bold color palette, and structured typography to optimize user experience.</p>"
+    ]
   }
 ]
