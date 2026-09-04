@@ -1,32 +1,74 @@
 ---
 // src/components/ImageGallery.astro
-interface Props {
-  images: string[]; // Accepts an array of image URLs
+interface GalleryImage {
+  url: string;
+  alt: string; // Enforce alt text for WCAG compliance
 }
 
-const { images } = Astro.props;
+interface Props {
+  images: GalleryImage[];
+  projectTitle: string;
+}
+
+const { images, projectTitle } = Astro.props;
 ---
 
-<div class="image-gallery">
-  {images.map((src) => (
-    <div class="gallery-item">
-      <img src={src} alt="Case study screenshot" loading="lazy" />
+{images && images.length > 0 && (
+  <section 
+    class="image-gallery-section" 
+    aria-label={`Visual media gallery for ${projectTitle}`}
+  >
+    <h2 class="sr-only">Project Gallery</h2>
+    <div class="image-gallery-grid">
+      {images.map(({ url, alt }) => (
+        <figure class="gallery-item">
+          <img 
+            src={url} 
+            alt={alt} 
+            loading="lazy" 
+            decoding="async"
+          />
+        </figure>
+      ))}
     </div>
-  ))}
-</div>
+  </section>
+)}
 
 <style>
-  .image-gallery {
+  /* Base grid styling */
+  .image-gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 16px;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
   }
+  
+  .gallery-item {
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #f7fafc; /* Placeholder contrast color while loading */
+  }
+
   .gallery-item img {
     width: 100%;
     height: auto;
+    display: block;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Screen reader only utility class for WCAG compliance */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>
