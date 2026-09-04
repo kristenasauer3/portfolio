@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "accessible-e-commerce",
+    "title": "Accessible E-Commerce Overhaul",
+    "description": "A deep dive case study analyzing the accessibility transformations made to a global retail platform.",
+    "theme": "light-theme",
+    "images": [
+      {
+        "url": "/images/ecommerce-before.jpg",
+        "alt": "Screenshot of the original checkout menu lacking keyboard focus rings and visible text labels."
+      },
+      {
+        "url": "/images/ecommerce-after.jpg",
+        "alt": "The redesigned checkout page displaying high-contrast text and a clear keyboard focus indicator around the active input field."
+      }
+    ],
+    "htmlContent": "<p class='intro-text'>Our primary objective was achieving full WCAG AA compliance across the shopping experience.</p><section aria-labelledby='audit-heading'> <h3 id='audit-heading'>Initial Accessibility Audit</h3> <p>We discovered critical drop-offs because users navigating strictly via screen readers or keyboards could not bypass the global navigation header.</p> <div class='custom-callout' role='note' aria-label='Key finding'> <p>Implementing a semantic skip-link architecture saved users an average of 42 keystrokes per page change.</p> </div></section>"
+  }
+]
