@@ -2,7 +2,7 @@
   {
     "slug": "bartenders-glossary",
     "title": "Bartenders Glossary",
-    "description": "An accessible terminology lookup tool for professional mixologists.",
+    "description": "An accessible terminology lookup website for professional mixologists.",
     "theme": "light-theme",
     "images": [
       {
@@ -19,7 +19,7 @@
   {
     "slug": "everyday-energy",
     "title": "Everyday Energy",
-    "description": "A web platform analyzing sustainable energy routines for residential homes.",
+    "description": "An app built to track an individual's specific daily health statistics.",
     "theme": "dark-theme",
     "images": [
       {
@@ -32,7 +32,7 @@
   {
     "slug": "hyrax-haven",
     "title": "Hyrax Haven",
-    "description": "Case study on an environmental conservation portal for wildlife tracking.",
+    "description": "A fictitious non-profit website about the Hyrax.",
     "theme": "light-theme",
     "images": [
       {
@@ -45,7 +45,7 @@
   {
     "slug": "scoop-strong",
     "title": "Scoop Strong",
-    "description": "Brand redesign and accessible digital asset delivery layout for a local creamery.",
+    "description": "High-protein ice cream book and guide to the Ninja Creami appliance.",
     "theme": "light-theme",
     "images": [
       {
@@ -58,7 +58,7 @@
   {
     "slug": "splitli",
     "title": "Splitli",
-    "description": "An inclusive bill-splitting application optimized for screen readers and mobile touch targets.",
+    "description": "A beginner-friendly website to help people get started on their fitness journey.",
     "theme": "dark-theme",
     "images": [
       {
