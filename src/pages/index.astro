@@ -14,25 +14,37 @@ import Navigation from '../components/Navigation.astro';
       margin: 0 auto;
       padding: 3rem 1.5rem;
       background-color: #ffffff;
-      color: #1a1a1a;
+      color: #000000;
     }
     h1 { 
-      font-size: 2.5rem;
+      font-size: 3.0rem;
       margin-bottom: 1rem;
       color: #000000;
     }
     .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 2rem;
       margin-bottom: 3rem;
     }
+    .hero-copy {
+      min-width: 0;
+    }
     .hero p {
-      font-size: 1.1rem;
-      color: #444;
+      font-size: 1.14rem;
+      color: #000000;
       line-height: 1.6;
-      margin-bottom: 1.5rem;
+      margin: 0;
+      max-width: 600px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
     }
     .cta-link {
       display: inline-block;
-      margin-top: 1rem;
       padding: 0.75rem 1.5rem;
       background-color: #1a1a1a;
       color: #ffffff;
@@ -45,6 +57,15 @@ import Navigation from '../components/Navigation.astro';
       background-color: #D3D3D3;
       color: #000000;
       transition: 0.35s;
+    }
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .hero-actions {
+        flex-wrap: wrap;
+      }
     }
     /* Main wrapper container */
     .card-grid-container {
@@ -99,11 +120,16 @@ import Navigation from '../components/Navigation.astro';
   font-weight: bold;
 }
 
+
 /* Color definitions */
-.card-about { background-color: #E25398; }
-.card-contact { background-color: #01D68C; }
-.card-work  { background-color: #4AA96C;  }
-.card-filler { background-color: #F5A7CD; }
+.card-about { background: linear-gradient(135deg, #e05297 0%, #ac1f61 100%);
+  border: 1px solid #ffffff; /* Soft inner rim */ }
+.card-contact { background: linear-gradient(135deg, #01D68C 0%, #008859 100%);
+  border: 1px solid #ffffff; /* Soft inner rim */ }
+.card-work { background: linear-gradient(135deg, #4AA96C 0%, #137134 100%);
+  border: 1px solid #ffffff; /* Soft inner rim */ }
+.card-filler { background: linear-gradient(135deg, #F5A7CD 0%, #f658a4 100%);
+  border: 1px solid #ffffff; /* Soft inner rim */ }
 
 /* Responsive adjustment for mobile screens */
 @media (max-width: 768px) {
@@ -124,19 +150,47 @@ import Navigation from '../components/Navigation.astro';
       border-top: 1px solid #e0e0e0;
     }
     .project-section h2 {
-      font-size: 1.8rem;
+      font-size: 1.0rem;
       margin-bottom: 1rem;
     }
+  .intro-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .intro-section h2 {
+    font-size: 2.61rem;
+    max-width: 600px;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .intro-section p {
+    font-size: 1.0rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+  @media (max-width: 768px) {
+    .intro-section {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
   </style>
 </head>
 <body>
   <Navigation />
 
   <header class="hero">
-    <h1>Designing for people.</h1>
-    <p>I'm Kristen, a graphic designer specializing in web design, UX/UI, and accessibility. I create digital experiences that look and feel good.</p>
-    <a href="/work/" class="cta-link">View My Work <span aria-hidden="true">→</span></a>
-    <a href="/about/" class="cta-link">More About Me <span aria-hidden="true">→</span></a>
+    <div class="hero-copy">
+      <h1>Designing for people.</h1>
+      <p>I'm Kristen, a graphic designer specializing in web design, UX/UI, and accessibility. I create digital experiences that look and feel good.</p>
+    </div>
+    <div class="hero-actions">
+      <a href="/work/" class="cta-link">View My Work <span aria-hidden="true">→</span></a>
+      <a href="/about/" class="cta-link">More About Me <span aria-hidden="true">→</span></a>
+    </div>
   </header>
 
 <div class="card-grid-container">
