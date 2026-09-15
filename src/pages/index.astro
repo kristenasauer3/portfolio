@@ -9,8 +9,8 @@ import Navigation from '../components/Navigation.astro';
   <title>My Graphic Design Portfolio</title>
   <style>
     body {
-      font-family: system-ui, sans-serif;
-      max-width: 900px;
+      font-family: inter, sans-serif;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 3rem 1.5rem;
       background-color: #ffffff;
@@ -19,6 +19,7 @@ import Navigation from '../components/Navigation.astro';
     h1 { 
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      color: #000000;
     }
     .hero {
       margin-bottom: 3rem;
@@ -41,8 +42,82 @@ import Navigation from '../components/Navigation.astro';
       transition: background-color 0.2s ease;
     }
     .cta-link:hover {
-      background-color: #444444;
+      background-color: #D3D3D3;
+      color: #000000;
+      transition: 0.35s;
     }
+    /* Main wrapper container */
+    .card-grid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0;
+    }
+
+    /* Each row expands horizontally while preserving its gap. */
+    .card-row {
+      display: flex;
+      width: 100%;
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      align-items: flex-end;
+      min-width: 0;
+      min-height: 220px;
+      padding: 30px;
+      border-radius: 24px;
+      text-decoration: none;
+      flex: 1 1 0;
+      transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Work and Contact begin at two thirds of their row. */
+    .card-work,
+    .card-contact {
+      flex: 2 1 0;
+    }
+
+    /* On hover, shrink only the sibling so the active card stays at 7:1. */
+    .card-row:has(.card:hover) .card:not(:hover) {
+      flex: 1 1 0;
+    }
+
+    .card:hover {
+      flex: 7 1 0;
+    }
+
+/* Text styling inside the boxes */
+.card h2 {
+  color: #000000;
+  font-family: sans-serif;
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Color definitions */
+.card-about { background-color: #E25398; }
+.card-contact { background-color: #01D68C; }
+.card-work  { background-color: #4AA96C;  }
+.card-filler { background-color: #F5A7CD; }
+
+/* Responsive adjustment for mobile screens */
+@media (max-width: 768px) {
+  .card-row {
+    flex-direction: column;
+  }
+  .card,
+  .card-work,
+  .card-contact,
+  .card:hover {
+    flex: none;
+    width: 100%;
+  }
+}
     .project-section {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -63,6 +138,26 @@ import Navigation from '../components/Navigation.astro';
     <a href="/work/" class="cta-link">View My Work <span aria-hidden="true">→</span></a>
     <a href="/about/" class="cta-link">More About Me <span aria-hidden="true">→</span></a>
   </header>
+
+<div class="card-grid-container">
+  <!-- Top Row -->
+  <div class="card-row">
+    <a href="about.html" class="card card-about">
+      <h2>About</h2>
+    </a>
+    <a href="work.html" class="card card-work">
+      <h2>Work</h2>
+    </a>
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="card-row">
+    <a href="contact.html" class="card card-contact">
+      <h2>Contact</h2>
+    </a>
+    <div class="card card-filler"></div>
+  </div>
+</div>
 
 <!-- Section 1: Intro / What I Do -->
 <section class="intro-section">
