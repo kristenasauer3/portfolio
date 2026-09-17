@@ -8,18 +8,30 @@ import Navigation from '../components/Navigation.astro';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Graphic Design Portfolio</title>
   <style>
+  :root {
+    --background: #ffffff;
+    --text: #000000;
+    --light-hover: #D3D3D3;
+    --primary: #f658a4;
+    --secondary: #03A964;
+    --primary-alt: #ac1f61;
+    --secondary-alt: #137134;
+  }
     body {
       font-family: inter, sans-serif;
       max-width: 1100px;
       margin: 0 auto;
       padding: 3rem 1.5rem;
       background-color: #ffffff;
-      color: #000000;
+      color: var(--text);
     }
-    h1 { 
-      font-size: 3.0rem;
+    .hero h1 {
+      font-size: 6.5rem;
       margin-bottom: 1rem;
-      color: #000000;
+      color: var(--text);
+      text-align: center;
+      white-space: nowrap;
+      grid-column: 1 / -1;
     }
     .hero {
       display: grid;
@@ -27,13 +39,14 @@ import Navigation from '../components/Navigation.astro';
       align-items: end;
       gap: 2rem;
       margin-bottom: 3rem;
+      padding: 1rem 1.5rem 5rem;
     }
     .hero-copy {
       min-width: 0;
     }
     .hero p {
       font-size: 1.14rem;
-      color: #000000;
+      color: var(--text);
       line-height: 1.6;
       margin: 0;
       max-width: 600px;
@@ -46,16 +59,16 @@ import Navigation from '../components/Navigation.astro';
     .cta-link {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      background-color: #1a1a1a;
-      color: #ffffff;
+      background-color: var(--text);
+      color: var(--background);
       text-decoration: none;
       border-radius: 4px;
       font-weight: 600;
       transition: background-color 0.2s ease;
     }
     .cta-link:hover {
-      background-color: #D3D3D3;
-      color: #000000;
+      background-color: var(--light-hover);
+      color: var(--text);
       transition: 0.35s;
     }
     @media (max-width: 768px) {
@@ -113,7 +126,7 @@ import Navigation from '../components/Navigation.astro';
 
 /* Text styling inside the boxes */
 .card h2 {
-  color: #000000;
+  color: var(--text);
   font-family: sans-serif;
   font-size: 2rem;
   margin: 0;
@@ -122,13 +135,13 @@ import Navigation from '../components/Navigation.astro';
 
 
 /* Color definitions */
-.card-about { background: linear-gradient(135deg, #e05297 0%, #ac1f61 100%);
+.card-about { background: linear-gradient(135deg, #e05297 0%, var(--primary-alt) 100%);
   border: 1px solid #ffffff; /* Soft inner rim */ }
-.card-contact { background: linear-gradient(135deg, #01D68C 0%, #008859 100%);
+.card-contact { background: linear-gradient(135deg, #01D68C 0%, var(--secondary) 100%);
   border: 1px solid #ffffff; /* Soft inner rim */ }
-.card-work { background: linear-gradient(135deg, #4AA96C 0%, #137134 100%);
+.card-work { background: linear-gradient(135deg, #4AA96C 0%, var(--secondary-alt) 100%);
   border: 1px solid #ffffff; /* Soft inner rim */ }
-.card-filler { background: linear-gradient(135deg, #F5A7CD 0%, #f658a4 100%);
+.card-filler { background: linear-gradient(135deg, #F5A7CD 0%, var(--primary) 100%);
   border: 1px solid #ffffff; /* Soft inner rim */ }
 
 /* Responsive adjustment for mobile screens */
@@ -154,37 +167,132 @@ import Navigation from '../components/Navigation.astro';
       margin-bottom: 1rem;
     }
   .intro-section {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: end;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: linear-gradient(
+      to bottom,
+      var(--background) 0%,
+      var(--primary) 18%,
+      var(--primary) 82%,
+      var(--background) 100%
+    );
     margin-bottom: 3rem;
+    padding: 20rem 1.5rem;
   }
   .intro-section h2 {
-    font-size: 2.61rem;
-    max-width: 600px;
+    font-size: 3.5rem;
     margin: 0;
     line-height: 1.2;
+    text-align: center;
+  }
+  .intro-section h2 span {
+    display: block;
+    color: var(--background);
   }
   .intro-section p {
+    display: flex;
     font-size: 1.0rem;
-    margin: 0;
+    margin: 0 auto;
     line-height: 1.6;
+    max-width: 650px;
   }
   @media (max-width: 768px) {
     .intro-section {
-      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
   }
+
+  .specialties-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 4rem;
+    align-items: start;
+    padding: 3rem 1.5rem;
+  }
+
+  .specialties-section h2 {
+    font-size: 2.5rem;
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .specialty-list {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .specialty {
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 1.25rem;
+  }
+
+  .specialty h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .specialty-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+  }
+
+  .specialty-button:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 0.35rem;
+  }
+
+  .specialty p {
+    max-width: 32rem;
+    margin: 0.65rem 0 0;
+    line-height: 1.6;
+  }
+
+  .specialty-visual {
+    position: sticky;
+    top: 2rem;
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f1f1f1;
+  }
+
+  .specialty-visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .specialties-section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .specialty-visual {
+      position: static;
+      grid-row: 2;
+    }
+  }
+
   </style>
 </head>
 <body>
   <Navigation />
 
   <header class="hero">
+    <h1>Designing for people.</h1>
     <div class="hero-copy">
-      <h1>Designing for people.</h1>
       <p>I'm Kristen, a graphic designer specializing in web design, UX/UI, and accessibility. I create digital experiences that look and feel good.</p>
     </div>
     <div class="hero-actions">
@@ -215,21 +323,37 @@ import Navigation from '../components/Navigation.astro';
 
 <!-- Section 1: Intro / What I Do -->
 <section class="intro-section">
-  <h2>Good design should work for everyone.</h2>
+  <h2>Good design should work for <span>everyone.</span></h2>
   <p>Accessibility isn’t something I add at the end of a project. It’s part of my approach from the beginning. Whether I’m building a website, developing a brand, or even just picking a font, I’m always thinking about how someone will actually experience it.</p>
 </section>
 
 <!-- Section 2: Specialties -->
 <section class="specialties-section">
   <h2>What I do</h2>
-  <h3>Web Design</h3>
-  <p>Websites designed to be easy to navigate, engaging, and accessible across devices.</p>
-  <h3>UX / UI</h3>
-  <p>Turning ideas into digital experiences. I focus on clear structure, intuitive interactions, and user-centered design.</p>
-  <h3>Accessibility</h3>
-  <p>Designing for all. From visual hierarchy and color contrast to navigation, interaction, and content, I consider accessibility throughout the process.</p>
-  <h3>Graphic Design</h3>
-  <p>Brand identities, visual systems, and everything in between. I like making things look good and making sure they look that way for a reason.</p>
+  <div class="specialty-list">
+    <div class="specialty">
+      <h3><button class="specialty-button" type="button" data-specialty="web-design" aria-expanded="true">Web Design</button></h3>
+      <p data-specialty-text="web-design">Websites designed to be easy to navigate, engaging, and accessible across devices.</p>
+    </div>
+    <div class="specialty">
+      <h3><button class="specialty-button" type="button" data-specialty="ux-ui" aria-expanded="false">UX / UI</button></h3>
+      <p data-specialty-text="ux-ui" hidden>Turning ideas into digital experiences. I focus on clear structure, intuitive interactions, and user-centered design.</p>
+    </div>
+    <div class="specialty">
+      <h3><button class="specialty-button" type="button" data-specialty="accessibility" aria-expanded="false">Accessibility</button></h3>
+      <p data-specialty-text="accessibility" hidden>Designing for all. From visual hierarchy and color contrast to navigation, interaction, and content, I consider accessibility throughout the process.</p>
+    </div>
+    <div class="specialty">
+      <h3><button class="specialty-button" type="button" data-specialty="graphic-design" aria-expanded="false">Graphic Design</button></h3>
+      <p data-specialty-text="graphic-design" hidden>Brand identities, visual systems, and everything in between. I like making things look good and making sure they look that way for a reason.</p>
+    </div>
+  </div>
+  <figure class="specialty-visual">
+    <img data-specialty-image="web-design" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85" alt="Bright workspace with a laptop and design materials">
+    <img data-specialty-image="ux-ui" src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85" alt="Designer working with colorful interface sketches" hidden>
+    <img data-specialty-image="accessibility" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85" alt="Team collaborating around a table" hidden>
+    <img data-specialty-image="graphic-design" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=85" alt="Graphic design tools and printed color swatches" hidden>
+  </figure>
 </section>
 
 <!-- Section 3: Featured Work -->
@@ -244,6 +368,30 @@ import Navigation from '../components/Navigation.astro';
   <h2>Let’s make something that works.</h2>
   <p>Have a project, opportunity, or idea? I’d love to hear about it.</p>
   <a href="/contact/" class="cta-link">Get in Touch <span aria-hidden="true">→</span></a>
+
+<script>
+  const specialtyButtons = document.querySelectorAll('[data-specialty]');
+  const specialtyTexts = document.querySelectorAll('[data-specialty-text]');
+  const specialtyImages = document.querySelectorAll('[data-specialty-image]');
+
+  specialtyButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const selectedSpecialty = button.dataset.specialty;
+
+      specialtyButtons.forEach((currentButton) => {
+        currentButton.setAttribute('aria-expanded', String(currentButton === button));
+      });
+
+      specialtyTexts.forEach((text) => {
+        text.hidden = text.dataset.specialtyText !== selectedSpecialty;
+      });
+
+      specialtyImages.forEach((image) => {
+        image.hidden = image.dataset.specialtyImage !== selectedSpecialty;
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
