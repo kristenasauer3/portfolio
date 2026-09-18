@@ -1,5 +1,6 @@
 ---
 import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,11 @@ import Navigation from '../components/Navigation.astro';
     --primary-alt: #ac1f61;
     --secondary-alt: #137134;
   }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
     body {
       font-family: inter, sans-serif;
       max-width: 1100px;
@@ -26,11 +32,10 @@ import Navigation from '../components/Navigation.astro';
       color: var(--text);
     }
     .hero h1 {
-      font-size: 6.5rem;
+      font-size: clamp(3.0rem, 10vw, 6.0rem);
       margin-bottom: 1rem;
       color: var(--text);
       text-align: center;
-      white-space: nowrap;
       grid-column: 1 / -1;
     }
     .hero {
@@ -183,7 +188,7 @@ import Navigation from '../components/Navigation.astro';
     padding: 20rem 1.5rem;
   }
   .intro-section h2 {
-    font-size: 3.5rem;
+    font-size: 2.25rem;
     margin: 0;
     line-height: 1.2;
     text-align: center;
@@ -226,7 +231,22 @@ import Navigation from '../components/Navigation.astro';
   }
 
   .specialty {
+    position: relative;
     padding-bottom: 1.25rem;
+  }
+
+  .specialty:has(.specialty-button[aria-expanded="true"]) {
+    padding-left: 1rem;
+  }
+
+  .specialty:has(.specialty-button[aria-expanded="true"])::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 1.25rem;
+    left: 0;
+    width: 0.25rem;
+    background: var(--primary);
   }
 
   .specialty h3 {
@@ -317,7 +337,150 @@ import Navigation from '../components/Navigation.astro';
       aspect-ratio: 4 / 3;
     }
   }
+  .featured-section {
+    display: grid;
+    gap: 0.75rem;
+    margin: 3rem 0;
+    padding: 1.0rem 0;
+  }
 
+  .featured-section h2,
+  .featured-section > p,
+  .featured-section > .cta-link {
+    justify-self: start;
+  }
+
+  .featured-section h2 {
+    font-size: 2.25rem;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  .featured-section > p {
+    font-size: 1rem;
+    max-width: 40rem;
+    margin: 0;
+    padding: 0 0 1.0rem 0;
+    }
+
+  .featured-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .featured-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    color: var(--background);
+    text-decoration: none;
+  }
+
+  .featured-card::after {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text);
+    content: '';
+    opacity: 0;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    transition: opacity 0.2s ease;
+  }
+
+  .featured-card-splitli::after {
+    mask-image: url('/images/featured-work-1.png');
+    -webkit-mask-image: url('/images/featured-work-1.png');
+  }
+
+  .featured-card-energy::after {
+    mask-image: url('/images/featured-work-2.png');
+    -webkit-mask-image: url('/images/featured-work-2.png');
+  }
+
+  .featured-card-bartender::after {
+    mask-image: url('/images/featured-work-3.png');
+    -webkit-mask-image: url('/images/featured-work-3.png');
+  }
+
+  .featured-card:hover::after,
+  .featured-card:focus-visible::after {
+    opacity: 0.65;
+  }
+
+  .featured-card-content {
+    position: absolute;
+    z-index: 1;
+    inset: 50% 1rem auto;
+    color: var(--background);
+    text-align: center;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .featured-card:hover .featured-card-content,
+  .featured-card:focus-visible .featured-card-content {
+    opacity: 1;
+  }
+
+  .featured-card-content h3,
+  .featured-card-content p {
+    margin: 0;
+  }
+
+  .featured-card-content h3 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .featured-card-content p {
+    padding: 0;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .featured-card:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 0.25rem;
+  }
+
+  .featured-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3.25 / 3;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .featured-gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .closing-section {
+    padding: 4.5rem 0;
+    text-align: center;
+  }
+
+  .closing-section h2 {
+    font-size: 2.5rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .closing-section p {
+    font-size: 1rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+  }
   </style>
 </head>
 <body>
@@ -330,7 +493,7 @@ import Navigation from '../components/Navigation.astro';
     </div>
     <div class="hero-actions">
       <a href="/work/" class="cta-link">View My Work <span aria-hidden="true">→</span></a>
-      <a href="/about/" class="cta-link">More About Me <span aria-hidden="true">→</span></a>
+      <a href="/about/" class="cta-link">More About Me <span aria-hpublic/images/featured-work-1.pngidden="true">→</span></a>
     </div>
   </header>
 
@@ -394,6 +557,30 @@ import Navigation from '../components/Navigation.astro';
   <h2>A few things I’ve made</h2>
   <p>A collection of websites, identities, and interactive experiences created with exploration, intention, and probably way too many tabs open.</p>
   <a href="/work/" class="cta-link">See All Work <span aria-hidden="true">→</span></a>
+  <div class="featured-gallery">
+    <a class="featured-card featured-card-splitli" href="/case-studies/splitli/">
+      <img src="/images/featured-work-1.png" alt="A fitness website called "Splitli" shown on a laptop screen">
+      <span class="featured-card-content">
+        <h3>Splitli</h3>
+        <p>Spring 2026</p>
+      </span>
+    </a>
+    <a class="featured-card featured-card-energy" href="/case-studies/everyday-energy/">
+      <img src="/images/featured-work-2.png" alt="A conceptual health tracking app called "Everyday Energy" shown on a phone screen held by a hand">
+      <span class="featured-card-content">
+        <h3>Everyday Energy</h3>
+        <p>Fall 2025</p>
+      </span>
+    </a>
+    <a class="featured-card featured-card-bartender" href="/case-studies/bartenders-glossary/">
+      <img src="/images/featured-work-3.png" alt="A conceptual bartending website shown on a laptop screen">
+      <span class="featured-card-content">
+        <h3>Bartender's Glossary</h3>
+        <p>Fall 2025</p>
+      </span>
+    </a>
+  </div>
+
 </section>
 
 <!-- Section 4: Closing CTA -->
@@ -401,6 +588,8 @@ import Navigation from '../components/Navigation.astro';
   <h2>Let’s make something that works.</h2>
   <p>Have a project, opportunity, or idea? I’d love to hear about it.</p>
   <a href="/contact/" class="cta-link">Get in Touch <span aria-hidden="true">→</span></a>
+
+  <Footer />
 
 <script>
   const specialtyButtons = document.querySelectorAll('[data-specialty]');

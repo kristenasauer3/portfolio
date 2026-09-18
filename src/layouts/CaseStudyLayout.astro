@@ -1,6 +1,7 @@
 ---
 // src/layouts/CaseStudyLayout.astro
 import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
 const { title, client, role, year } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -87,6 +88,8 @@ const { title, client, role, year } = Astro.props;
       <slot />
     </main>
   </div>
+
+  <Footer />
 
 </body>
 </html>
