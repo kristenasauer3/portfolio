@@ -11,7 +11,7 @@ import Navigation from '../components/Navigation.astro';
   :root {
     --background: #ffffff;
     --text: #000000;
-    --light-hover: #D3D3D3;
+    --light-hover: #767474;
     --primary: #f658a4;
     --secondary: #03A964;
     --primary-alt: #ac1f61;
@@ -207,7 +207,7 @@ import Navigation from '../components/Navigation.astro';
 
   .specialties-section {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
     gap: 4rem;
     align-items: start;
     padding: 3rem 1.5rem;
@@ -215,17 +215,17 @@ import Navigation from '../components/Navigation.astro';
 
   .specialties-section h2 {
     font-size: 2.5rem;
-    grid-column: 1 / -1;
+    grid-column: 1;
     margin: 0;
   }
 
   .specialty-list {
+    grid-column: 1;
     display: grid;
     gap: 1.25rem;
   }
 
   .specialty {
-    border-bottom: 1px solid #d9d9d9;
     padding-bottom: 1.25rem;
   }
 
@@ -244,6 +244,11 @@ import Navigation from '../components/Navigation.astro';
     cursor: pointer;
     font: inherit;
     text-align: left;
+    transition: color 0.45s ease;
+  }
+
+  .specialty-button[aria-expanded="false"] {
+    color: var(--light-hover);
   }
 
   .specialty-button:focus-visible {
@@ -260,17 +265,38 @@ import Navigation from '../components/Navigation.astro';
   .specialty-visual {
     position: sticky;
     top: 2rem;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: stretch;
     margin: 0;
-    aspect-ratio: 4 / 3;
     overflow: hidden;
     background: #f1f1f1;
   }
 
+  .specialty-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to left, transparent 65%, var(--background));
+    pointer-events: none;
+  }
+
   .specialty-visual img {
     display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+  }
+
+  .specialty-visual img[data-active="true"] {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
   }
 
   @media (max-width: 768px) {
@@ -279,9 +305,16 @@ import Navigation from '../components/Navigation.astro';
       gap: 2rem;
     }
 
+    .specialties-section h2,
+    .specialty-list {
+      grid-column: 1;
+    }
+
     .specialty-visual {
       position: static;
-      grid-row: 2;
+      grid-column: 1;
+      grid-row: 3;
+      aspect-ratio: 4 / 3;
     }
   }
 
@@ -349,10 +382,10 @@ import Navigation from '../components/Navigation.astro';
     </div>
   </div>
   <figure class="specialty-visual">
-    <img data-specialty-image="web-design" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85" alt="Bright workspace with a laptop and design materials">
-    <img data-specialty-image="ux-ui" src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85" alt="Designer working with colorful interface sketches" hidden>
-    <img data-specialty-image="accessibility" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85" alt="Team collaborating around a table" hidden>
-    <img data-specialty-image="graphic-design" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=85" alt="Graphic design tools and printed color swatches" hidden>
+    <img data-specialty-image="web-design" data-active="true" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85" alt="Bright workspace with a laptop and design materials">
+    <img data-specialty-image="ux-ui" src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85" alt="Designer working with colorful interface sketches">
+    <img data-specialty-image="accessibility" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85" alt="Team collaborating around a table">
+    <img data-specialty-image="graphic-design" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=85" alt="Graphic design tools and printed color swatches">
   </figure>
 </section>
 
@@ -387,7 +420,7 @@ import Navigation from '../components/Navigation.astro';
       });
 
       specialtyImages.forEach((image) => {
-        image.hidden = image.dataset.specialtyImage !== selectedSpecialty;
+        image.dataset.active = String(image.dataset.specialtyImage === selectedSpecialty);
       });
     });
   });
