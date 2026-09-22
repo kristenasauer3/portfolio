@@ -1,5 +1,6 @@
 ---
 // src/pages/work.astro
+import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -10,130 +11,357 @@ import Footer from '../components/Footer.astro';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selected Work | Portfolio</title>
   <style>
+/* Base text styles matching your mockup */
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-      color: #1a1a1a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-    .main-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
+  .main-container h1 {
+    font-size: 5.5rem;
+  }
+
+  .main-container .hero-section p {
+    font-size: 1.5rem;
+    max-width: 700px;
+  }
+/* Outer layout wrapping the blueprint grid lines */
+    .portfolio-carousel {
+      margin-top: 5rem;
+      position: relative;
     }
-    h1 { 
-      font-size: 2.5rem; 
-      margin-bottom: 3rem; 
+
+/* 3-Column blueprint structure matching the Figma design */
+    .carousel-viewport {
+      overflow: hidden;
+      height: clamp(32rem, 50vw, 42rem);
+      display: grid;
+      grid-template-columns: 1fr 20px 1.2fr; /* Col 1: Text, Col 2: Spacer/Line, Col 3: Media */
+      border-left: 1px dashed #ccc;
+      border-right: 1px dashed #ccc;
     }
     
-    /* Accessible grid pattern layout */
-    .portfolio-grid {
+    .carousel-track {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 450ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+.project-slide {
+      flex: 0 0 100%;
+      min-height: 0;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 3rem;
+      grid-template-columns: 1fr 20px 1.2fr;
+      align-items: center;
+      box-sizing: border-box;
     }
+
+    /* Left layout: Information Panel */
     .project-card {
-      text-decoration: none;
-      color: #1a1a1a;
-      display: block;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem;
+      position: relative;
+      height: 80%;
+      justify-content: space-between;
     }
-    .image-placeholder {
-      background-color: #f5f5f5;
-      aspect-ratio: 16 / 10;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      margin-bottom: 1rem;
+
+    .project-card-header {
+      width: 100%;
+    }
+
+    .project-category {
+      color: var(--primary);
+      font-size: clamp(1rem, 1.2vw, 1.25rem);
+      font-weight: 500;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .project-card h2 {
+      font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+      font-weight: 700;
+      margin: 0;
+      color: #000;
+    }
+
+    .project-description {
+      color: #4a4a4a;
+      margin: 2rem 0;
+      font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+      line-height: 1.5;
+      max-width: 32rem;
+    }
+
+    /* Interactive button element wrapper */
+    .project-action-row {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .project-link {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--text);
+      color: var(--background);
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    .project-link:hover {
+      background-color: var(--secondary-alt);
+      color: var(--text);
+      transition: 0.35s;
+    }
+
+    /* Right Layout: Vertical Media Stack Preview */
+    .project-media-wrapper {
+      height: 140%; /* Overflowing height handles previous and next peek effects */
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+      padding-right: 2rem;
+    }
+
+    .project-media {
+      display: block;
+      width: 100%;
+      height: 24rem;
+      object-fit: cover;
+      border-radius: 24px; /* Rounded card layout */
+      background: #ff3399; /* Main pink tone fallback */
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    /* Decorative peeking preview items */
+    .media-peek {
+      width: 100%;
+      height: 8rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #ffccd5 0%, #ffb3c1 100%);
+      opacity: 0.7;
+    }
+
+    /* Shared Footer controls container matching your grid alignment */
+    .carousel-controls {
+      display: grid;
+      grid-template-columns: 1fr 20px 1.2fr;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding: 0 2rem;
+    }
+
+    .carousel-status-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .carousel-status {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .status-dots-divider {
+      flex-grow: 1;
+      border-bottom: 1px dashed #ccc;
+      margin-right: 1rem;
+    }
+
+    .carousel-buttons {
+      display: flex;
+      background-color: #e0e0e0;
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .carousel-button {
+      width: 2.2rem;
+      height: 2.2rem;
+      border: none;
+      background: #ffffff;
+      color: #000000;
+      cursor: pointer;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #666;
+      border-radius: 4px;
+      transition: background-color 0.1s ease;
     }
-    .project-card h2 { 
-      font-size: 1.5rem; 
-      margin: 0 0 0.5rem 0; 
+
+    .carousel-button:hover,
+    .carousel-button:focus-visible {
+      background: var(--text);
+      color: var(--background);
     }
-    .project-card p { 
-      color: #555; 
-      margin: 0; 
-      font-size: 1.1rem; 
-    }
-    .project-card:hover h2, .project-card:focus h2 { 
-      text-decoration: underline; 
+  /* Responsive Mobile Overrides */
+    @media (max-width: 850px) {
+      .carousel-viewport, .project-slide, .carousel-controls {
+        grid-template-columns: 1fr;
+      }
+      .grid-line-middle {
+        display: none;
+      }
+      .carousel-viewport {
+        height: auto;
+      }
+      .project-slide {
+        padding: 2rem 0;
+      }
+      .project-card {
+        padding: 1rem;
+        height: auto;
+      }
+      .project-media-wrapper {
+        height: auto;
+        padding: 1rem;
+      }
+      .media-peek {
+        display: none;
+      }
+      .status-dots-divider {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Reusable Navigation Component -->
   <Navigation />
 
   <main id="main-content" class="main-container">
   <!-- Section 1: Hero -->
-  <section-class="hero-section">
+  <section class="hero-section">
     <h1>Selected work.</h1>
     <p>A collection of projects exploring **web design, UX/UI, branding, and accessibility.**</p>
   </section>
 
-  <!-- Section 2: Project Intro -->
-  <section-class="project-intro-section">
-    <h2>Design with a purpose.</h2>
-    <p>Every project starts with a problem to solve. I like figuring out how visual design, technology, and user needs can come together to create something functional and memorable.</p>
-  </section>
+    <section class="portfolio-carousel" aria-label="Selected projects" data-carousel>
+      <div class="carousel-viewport">
+      <!-- Structural blueprint division helper -->
+        <div class="carousel-track">
 
-    <div class="portfolio-grid">
+          <article class="project-slide">
+            <div class="project-card">
+              <div class="project-card-header">
+              <p class="project-category">Web Design <span aria-hidden="true">·</span> UX/UI <span aria-hidden="true">·</span> Accessibility</p>
+              <h2>Splitli</h2>
+              </div>
+              <p class="project-description">A beginner-friendly fitness website designed to make understanding workout splits feel less intimidating.</p>
+              <div class="project-action-row">
+              <a href="/case-studies/splitli/" class="project-link">View Project <span aria-hidden="true">→</span></a>
+              <span class="project-date">Spring 2026</span>
+              </div>
+            </div>
+            <div class="grid-line-middle"></div>
+            <div class="project-media-wrapper">
+              <div class="media-peek"></div>
+              <img class="project-media" style="background-color: #ff3399;" src="/images/featured-work-1.png" alt="Splitli project preview">
+              <div class="media-peek"></div>
+            </div>
+          </article>
 
-      <!-- Project 1 Card -->
-      <a href="/case-studies/splitli/" class="project-card">
-        <div class="image-placeholder">Splitli Mockup</div>
-        <h2>Splitli</h2>
-        <p class="project-description">A beginner-friendly fitness website designed to make understanding workout splits feel less intimidating.</p>
-        <p class="project-category">Web Design <span aria-hidden="true">·</span> UX/UI <span aria-hidden="true">·</span> Accessibility</p>
-        <a href="/case-studies/splitli/">View Project <span aria-hidden="true">→</span></a>
-      
-      </a>
+          <article class="project-slide">
+            <div class="project-card">
+              <div class="project-card-header">
+              <p class="project-category">Web Design <span aria-hidden="true">·</span> Branding <span aria-hidden="true">·</span> UX/UI</p>
+              <h2>Hyrax Haven</h2>
+            </div>
+              <p class="project-description">A playful nonprofit-style website bringing the fascinating world of hyraxes to life through branding, storytelling, and web design.</p>
+              <div class="project-action-row">
+              <a href="/case-studies/hyrax-haven/" class="project-link">View Project <span aria-hidden="true">→</span></a>
+              <span class="project-date">Spring 2026</span>
+            </div>
+          </div>
+          <div class="grid-line-middle"></div>
+          <div class="project-media-wrapper">
+            <div class="media-peek"></div>
+            <img class="project-media" style="background-color: #33a8ff;" src="/images/featured-work-2.png" alt="Hyrax Haven project preview">          
+            <div class="media-peek"></div>
+          </div>
+        </article>
 
-      <!-- Project 2 Card -->
-      <a href="/case-studies/hyrax-haven/" class="project-card">
-        <div class="image-placeholder">Hyrax Haven Mockup</div>
-        <h2>Hyrax Haven</h2>
-        <p class="project-description">A playful nonprofit-style website bringing the fascinating world of hyraxes to life through branding, storytelling, and web design.</p>
-        <p class="project-category">Web Design <span aria-hidden="true">·</span> Branding <span aria-hidden="true">·</span> UX/UI</p>
-        <a href="/case-studies/hyrax-haven/">View Project <span aria-hidden="true">→</span></a>
+          <article class="project-slide">
+            <div class="project-card">
+              <div class="project-card-header">
+              <p class="project-category">Web Design <span aria-hidden="true">·</span> UX/UI <span aria-hidden="true">·</span> Interaction Design</p>
+              <h2>Bartenders Glossary</h2>
+            </div>
+              <p class="project-description">An interactive digital glossary designed to make the world of cocktails, tools, and bartending terminology easier to explore.</p>
+              <div class="project-action-row">
+              <a href="/case-studies/bartenders-glossary/" class="project-link">View Project <span aria-hidden="true">→</span></a>
+              <span class="project-date">Summer 2026</span>
+            </div>
+          </div>
+          <div class="grid-line-middle"></div>
+          <div class="project-media-wrapper">
+            <div class="media-peek"></div>
+            <img class="project-media" style="background-color: #33ffaa;" src="/images/featured-work-3.png" alt="Bartenders Glossary project preview">
+            <div class="media-peek"></div>
+          </div>
+        </article>
 
-      </a>
+          <article class="project-slide">
+            <div class="project-card">
+              <div class="project-card-header">
+              <p class="project-category">UX/UI <span aria-hidden="true">·</span> App Design <span aria-hidden="true">·</span> Prototyping</p>
+              <h2>Everyday Energy</h2>
+            </div>
+              <p class="project-description">A wellness mobile app concept designed to help users better understand and track their everyday habits.</p>
+              <div class="project-action-row">
+              <a href="/case-studies/everyday-energy/" class="project-link">View Project <span aria-hidden="true">→</span></a>
+              <span class="project-date">Summer 2026</span>
+            </div>
+          </div>
+          <div class="grid-line-middle"></div>
+          <div class="project-media-wrapper">
+            <div class="media-peek"></div>
+            <img class="project-media" src="/images/featured-work-1.png" alt="Everyday Energy project preview">
+            <div class="media-peek"></div>
+          </div>
+        </article>
 
-      <!-- Project 3 Card -->
-      <a href="/case-studies/bartenders-glossary/" class="project-card">
-        <div class="image-placeholder">Bartenders Glossary Mockup</div>
-        <h2>Bartenders Glossary</h2>
-        <p class="project-description">An interactive digital glossary designed to make the world of cocktails, tools, and bartending terminology easier to explore.</p>
-        <p class="project-category">Web Design <span aria-hidden="true">·</span> UX/UI <span aria-hidden="true">·</span> Interaction Design</p>
-        <a href="/case-studies/bartenders-glossary/">View Project <span aria-hidden="true">→</span></a>
-
-      </a>
-
-      <!-- Project 4 Card -->
-      <a href="/case-studies/everyday-energy/" class="project-card">
-        <div class="image-placeholder">Everyday Energy Mockup</div>
-        <h2>Everyday Energy</h2>
-        <p class="project-description">A wellness mobile app concept designed to help users better understand and track their everyday habits.</p>
-        <p class="project-category">UX/UI <span aria-hidden="true">·</span> App Design <span aria-hidden="true">·</span> Prototyping</p>
-        <a href="/case-studies/everyday-energy/">View Project <span aria-hidden="true">→</span></a>
-      </a>
-
-
-      <!-- Project 5 Card -->
-      <a href="/case-studies/scoop-strong/" class="project-card">
-        <div class="image-placeholder">Scoop Strong Mockup</div>
-        <h2>Scoop Strong</h2>
-        <p class="project-description">An ice cream recipe book and guide for the Ninja Creami, centered around the idea of enjoying hitting your macros.</p>
-        <p class="project-category">Editorial Design <span aria-hidden="true">·</span> Layout <span aria-hidden="true">·</span> Typography</p>
-        <a href="/case-studies/scoop-strong/">View Project <span aria-hidden="true">→</span></a>
-
-      </a>
-
-    </div>
+          <article class="project-slide">
+            <div class="project-card">
+              <div class="project-card-header">
+              <p class="project-category">Editorial Design <span aria-hidden="true">·</span> Layout <span aria-hidden="true">·</span> Typography</p>
+              <h2>Scoop Strong</h2>
+            </div>
+              <p class="project-description">An ice cream recipe book and guide for the Ninja Creami, centered around the idea of enjoying hitting your macros.</p>
+              <div class="project-action-row">
+              <a href="/case-studies/scoop-strong/" class="project-link">View Project <span aria-hidden="true">→</span></a>
+              <span class="project-date">Summer 2026</span>
+            </div>
+          </div>
+          <div class="grid-line-middle"></div>
+          <div class="project-media-wrapper">
+            <div class="media-peek"></div>
+            <img class="project-media" src="/images/featured-work-2.png" alt="Scoop Strong project preview">
+            <div class="media-peek"></div>
+          </div>
+        </article>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <span class="carousel-status" aria-live="polite">Project 1 of 5</span>
+        <div class="carousel-buttons">
+          <button class="carousel-button" type="button" data-carousel-prev aria-label="Previous project">↑</button>
+          <button class="carousel-button" type="button" data-carousel-next aria-label="Next project">↓</button>
+        </div>
+      </div>
+    </section>
 
     <!-- Closing Statement -->
     <h2>Like what you see?</h2>
@@ -142,6 +370,24 @@ import Footer from '../components/Footer.astro';
   </main>
 
   <Footer />
+
+  <script>
+    const carousel = document.querySelector('[data-carousel]');
+    const track = carousel?.querySelector('.carousel-track');
+    const slides = carousel?.querySelectorAll('.project-slide');
+    const status = carousel?.querySelector('.carousel-status');
+    let currentSlide = 0;
+
+    const updateCarousel = (nextSlide) => {
+      if (!track || !slides || !status) return;
+      currentSlide = (nextSlide + slides.length) % slides.length;
+      track.style.transform = `translateY(-${currentSlide * 100}%)`;
+      status.textContent = `Project ${currentSlide + 1} of ${slides.length}`;
+    };
+
+    carousel?.querySelector('[data-carousel-prev]')?.addEventListener('click', () => updateCarousel(currentSlide - 1));
+    carousel?.querySelector('[data-carousel-next]')?.addEventListener('click', () => updateCarousel(currentSlide + 1));
+  </script>
 
 </body>
 </html>

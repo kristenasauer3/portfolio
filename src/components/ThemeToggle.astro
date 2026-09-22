@@ -1,0 +1,115 @@
+<button
+  class="theme-toggle"
+  type="button"
+  aria-label="Switch to dark mode"
+  aria-pressed="false"
+>
+  <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+
+  <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8Z" />
+  </svg>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+
+  if (button) {
+    const root = document.documentElement;
+
+    const updateTheme = (theme: 'light' | 'dark') => {
+      root.dataset.theme = theme;
+      button.setAttribute('aria-pressed', String(theme === 'dark'));
+      button.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+    };
+
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const initialTheme =
+      savedTheme ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light');
+
+    updateTheme(initialTheme);
+
+    button.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+
+      updateTheme(nextTheme);
+      localStorage.setItem('theme', nextTheme);
+    });
+  }
+</script>
+
+<style>
+  .theme-toggle {
+    position: relative;
+    display: inline-flex;
+    width: 1.25rem;
+    height: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    color: var(--text);
+    background: transparent;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      font-weight 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    color: #fd43a2;
+    font-weight: 600;
+  }
+
+  .theme-toggle svg {
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+    transition:
+      opacity 300ms ease,
+      transform 300ms ease;
+  }
+
+  .sun-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+
+  .moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+  }
+
+  :global(html[data-theme='dark']) .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+  }
+
+  :global(html[data-theme='dark']) .moon-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle,
+    .theme-toggle svg {
+      transition: none;
+    }
+  }
+</style>

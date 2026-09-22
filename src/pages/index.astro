@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -9,28 +10,6 @@ import Footer from '../components/Footer.astro';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Graphic Design Portfolio</title>
   <style>
-  :root {
-    --background: #ffffff;
-    --text: #000000;
-    --light-hover: #767474;
-    --primary: #f658a4;
-    --secondary: #03A964;
-    --primary-alt: #ac1f61;
-    --secondary-alt: #137134;
-  }
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: inter, sans-serif;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-      background-color: #ffffff;
-      color: var(--text);
-    }
     .hero h1 {
       font-size: clamp(3.0rem, 10vw, 6.0rem);
       margin-bottom: 1rem;
@@ -72,7 +51,7 @@ import Footer from '../components/Footer.astro';
       transition: background-color 0.2s ease;
     }
     .cta-link:hover {
-      background-color: var(--light-hover);
+      background-color: var(--secondary-alt);
       color: var(--text);
       transition: 0.35s;
     }
@@ -110,8 +89,12 @@ import Footer from '../components/Footer.astro';
       padding: 30px;
       border-radius: 24px;
       text-decoration: none;
+      color: var(--text);
       flex: 1 1 0;
-      transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      transition:
+        flex 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        color 300ms ease,
+        background-color 300ms ease;
     }
 
     /* Work and Contact begin at two thirds of their row. */
@@ -140,14 +123,34 @@ import Footer from '../components/Footer.astro';
 
 
 /* Color definitions */
-.card-about { background: linear-gradient(135deg, #e05297 0%, var(--primary-alt) 100%);
-  border: 1px solid #ffffff; /* Soft inner rim */ }
-.card-contact { background: linear-gradient(135deg, #01D68C 0%, var(--secondary) 100%);
-  border: 1px solid #ffffff; /* Soft inner rim */ }
-.card-work { background: linear-gradient(135deg, #4AA96C 0%, var(--secondary-alt) 100%);
-  border: 1px solid #ffffff; /* Soft inner rim */ }
-.card-filler { background: linear-gradient(135deg, #F5A7CD 0%, var(--primary) 100%);
-  border: 1px solid #ffffff; /* Soft inner rim */ }
+.card-about {
+  background-color: var(--primary);
+}
+.card-contact {
+  background-color: var(--secondary);
+}
+.card-work {
+  background-color: var(--secondary-alt);
+}
+.card-filler {
+  background-color: var(--primary-alt);
+}
+
+:global(html[data-theme='dark']) .card-about {
+  background-color: var(--primary);
+}
+
+:global(html[data-theme='dark']) .card-contact {
+  background-color: var(--secondary);
+}
+
+:global(html[data-theme='dark']) .card-work {
+  background-color: var(--secondary-alt);
+}
+
+:global(html[data-theme='dark']) .card-filler {
+  background-color: var(--primary-alt);
+}
 
 /* Responsive adjustment for mobile screens */
 @media (max-width: 768px) {
@@ -165,7 +168,6 @@ import Footer from '../components/Footer.astro';
     .project-section {
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #e0e0e0;
     }
     .project-section h2 {
       font-size: 1.0rem;

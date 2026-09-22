@@ -1,0 +1,44 @@
+/* Light mode styles (Default) */
+  :root {
+      color-scheme: light;
+    --background: #ffffff;
+    --text: #000000;
+    --light-hover: #a5a5a5;
+    --description: #6B6B6B;
+    --primary: #f658a4;
+    --secondary: #09a26c;
+    --primary-alt: #faa2c8;
+    --secondary-alt: #14cf94;
+  }
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --background: #000000;
+  --text: #ffffff;
+  --light-hover: #777777;
+  --description: #969696;
+  --primary: #E01F7C;
+  --secondary: #068458;
+  --primary-alt: #faa2c8;
+  --secondary-alt: #096346;
+
+}
+
+      *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+  body {
+    font-family: inter, sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    background-color: var(--background);
+    color: var(--text);
+    transition:
+      color 300ms ease,
+      background-color 300ms ease;
+  }
+  
+
