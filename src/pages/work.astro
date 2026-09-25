@@ -32,21 +32,26 @@ import Footer from '../components/Footer.astro';
 /* 3-Column blueprint structure */
     .carousel-viewport {
       overflow: hidden;
-      height: auto;
+      height: 100vh;
       display: grid;
       grid-template-columns: 1fr 20px 1.2fr; /* Col 1: Text, Col 2: Spacer/Line, Col 3: Media */
+      position: relative;
     }
     
     .carousel-track {
       grid-column: 1 / -1;
+      grid-row: 1;
       display: flex;
       flex-direction: column;
       height: auto;
-      transition: transform 450ms cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 900ms cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+      z-index: 1;
     }
 
 .project-slide {
-      flex: 0 0 auto;
+  flex: 0 0 100vh;
+  height: 100vh;
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 20px 1.2fr;
@@ -90,21 +95,17 @@ import Footer from '../components/Footer.astro';
     }
 
     .project-description {
-      color: var(--text);
-      margin: 2rem 0;
+      color: var(--description);
+      margin: auto 0 2rem;
       font-size: clamp(0.95rem, 1.1vw, 1.15rem);
       line-height: 1.5;
       max-width: 32rem;
-      display: flex;
     }
 
     .project-date {
-      color: var(--text);
+      color: var(--description);
       font-size: clamp(0.95rem, 1.1vw, 1.15rem);
       line-height: 1.5;
-      max-width: 32rem;
-      flex-direction: row-reverse;
-
     }
 
     /* Interactive button element wrapper */
@@ -113,7 +114,6 @@ import Footer from '../components/Footer.astro';
       width: 100%;
       justify-content: space-between;
       align-items: center;
-      margin-top: auto;
     }
 
     .project-link {
@@ -138,6 +138,7 @@ import Footer from '../components/Footer.astro';
       height: auto;
       display: flex;
       flex-direction: column;
+      gap: 0.75rem;
       justify-content: center;
       align-items: center;
       padding-right: 2rem;
@@ -145,31 +146,30 @@ import Footer from '../components/Footer.astro';
 
     .project-media {
       display: block;
-      width: 120%;
-      max-height: 25rem;
-      object-fit: cover;
+      width: auto;
+      max-width: 100%;
+      max-height: none;
+      height: var(--focus-height, auto);
+      object-fit: contain;
       border-radius: 24px; /* Rounded card layout */
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-
-    /* Decorative peeking preview items */
-    .media-peek {
-      display: none;
     }
 
     /* Shared Footer controls container matching your grid alignment */
     .carousel-controls {
-      display: grid;
-      grid-template-columns: 1fr 20px 1.2fr;
-      align-items: center;
+      display: flex;
+      width: 100%;
       margin-top: 1.5rem;
-      padding: 0 2rem;
+      padding: 0;
     }
 
     .carousel-status-wrapper {
       display: flex;
+      width: 100%;
+      max-width: none;
+      padding-right: 0;
       align-items: center;
+      justify-content: space-between;
       gap: 1.5rem;
     }
 
@@ -181,11 +181,12 @@ import Footer from '../components/Footer.astro';
     .status-dots-divider {
       flex-grow: 1;
       margin-right: 1rem;
+      border-top: 2px dotted var(--description);
     }
 
     .carousel-buttons {
       display: flex;
-      background-color: #e0e0e0;
+      background-color: #a5a5a5;
       border-radius: 6px;
       padding: 2px;
       gap: 2px;
@@ -202,7 +203,7 @@ import Footer from '../components/Footer.astro';
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 4px;
+      border-radius: 10px;
       transition: background-color 0.1s ease;
     }
 
@@ -220,7 +221,7 @@ import Footer from '../components/Footer.astro';
         display: none;
       }
       .carousel-viewport {
-        height: auto;
+        height: 100vh;
       }
       .project-slide {
         padding: 1rem 0;
@@ -234,9 +235,9 @@ import Footer from '../components/Footer.astro';
         padding: 1rem;
       }
       .project-media {
-        height: auto;
+        width: auto;
+        max-width: 100%;
         max-height: none;
-        aspect-ratio: 4 / 3;
       }
       .status-dots-divider {
         display: none;
@@ -274,9 +275,7 @@ import Footer from '../components/Footer.astro';
             </div>
             <div class="grid-line-middle"></div>
             <div class="project-media-wrapper">
-              <div class="media-peek"></div>
               <img class="project-media" style="background-color: #ff3399;" src="/images/featured-work-1.png" alt="Splitli project preview">
-              <div class="media-peek"></div>
             </div>
           </article>
 
@@ -294,9 +293,7 @@ import Footer from '../components/Footer.astro';
           </div>
           <div class="grid-line-middle"></div>
           <div class="project-media-wrapper">
-            <div class="media-peek"></div>
             <img class="project-media" style="background-color: #33a8ff;" src="/images/featured-work-2.png" alt="Hyrax Haven project preview">          
-            <div class="media-peek"></div>
           </div>
         </article>
 
@@ -314,9 +311,7 @@ import Footer from '../components/Footer.astro';
           </div>
           <div class="grid-line-middle"></div>
           <div class="project-media-wrapper">
-            <div class="media-peek"></div>
             <img class="project-media" style="background-color: #33ffaa;" src="/images/featured-work-3.png" alt="Bartenders Glossary project preview">
-            <div class="media-peek"></div>
           </div>
         </article>
 
@@ -334,9 +329,7 @@ import Footer from '../components/Footer.astro';
           </div>
           <div class="grid-line-middle"></div>
           <div class="project-media-wrapper">
-            <div class="media-peek"></div>
             <img class="project-media" src="/images/featured-work-1.png" alt="Everyday Energy project preview">
-            <div class="media-peek"></div>
           </div>
         </article>
 
@@ -354,18 +347,19 @@ import Footer from '../components/Footer.astro';
           </div>
           <div class="grid-line-middle"></div>
           <div class="project-media-wrapper">
-            <div class="media-peek"></div>
             <img class="project-media" src="/images/featured-work-2.png" alt="Scoop Strong project preview">
-            <div class="media-peek"></div>
           </div>
         </article>
         </div>
       </div>
       <div class="carousel-controls">
-        <span class="carousel-status" aria-live="polite">Project 1 of 5</span>
-        <div class="carousel-buttons">
-          <button class="carousel-button" type="button" data-carousel-prev aria-label="Previous project">↑</button>
-          <button class="carousel-button" type="button" data-carousel-next aria-label="Next project">↓</button>
+        <div class="carousel-status-wrapper">
+          <span class="carousel-status" aria-live="polite">Project 1 of 5</span>
+          <div class="status-dots-divider" aria-hidden="true"></div>
+          <div class="carousel-buttons">
+            <button class="carousel-button" type="button" data-carousel-prev aria-label="Previous project">↑</button>
+            <button class="carousel-button" type="button" data-carousel-next aria-label="Next project">↓</button>
+          </div>
         </div>
       </div>
     </section>
@@ -384,21 +378,105 @@ import Footer from '../components/Footer.astro';
     const track = carousel?.querySelector('.carousel-track');
     const slides = carousel?.querySelectorAll('.project-slide');
     const status = carousel?.querySelector('.carousel-status');
+    const controls = carousel?.querySelector('.carousel-controls');
     let currentSlide = 0;
 
+    const firstSlideClone = slides?.[0]?.cloneNode(true);
+    const lastSlideClone = slides?.[slides.length - 1]?.cloneNode(true);
+    if (track && firstSlideClone && lastSlideClone) {
+      track.prepend(lastSlideClone);
+      track.append(firstSlideClone);
+    }
+
+    const allSlides = [...(slides ?? []), lastSlideClone, firstSlideClone].filter(Boolean);
+
+    const syncFocusMedia = (slide) => {
+      const projectCard = slide?.querySelector('.project-card');
+      if (!slide || !projectCard) return;
+      slide.style.setProperty('--focus-height', `${projectCard.getBoundingClientRect().height}px`);
+    };
+
+    const clearTransitionState = () => {
+      allSlides.forEach((slide) => {
+        slide.classList.remove(
+          'is-transition-source',
+          'is-transition-target',
+          'is-forward',
+          'is-backward',
+          'is-revealing'
+        );
+      });
+    };
+
     const updateCarousel = (nextSlide) => {
-      if (!viewport || !track || !slides || !status) return;
+      if (!viewport || !track || !slides || !status || !controls) return;
+      const isRefresh = nextSlide === currentSlide;
+      const wrapsForward = currentSlide === slides.length - 1 && nextSlide >= slides.length;
+      const wrapsBackward = currentSlide === 0 && nextSlide < 0;
+      const movingForward = wrapsForward || (!wrapsBackward && nextSlide > currentSlide);
+      const previousSlide = slides[currentSlide];
       currentSlide = (nextSlide + slides.length) % slides.length;
       const activeSlide = slides[currentSlide];
-      viewport.style.height = `${activeSlide.offsetHeight}px`;
-      track.style.transform = `translateY(-${activeSlide.offsetTop}px)`;
+      const targetSlide = wrapsForward
+        ? firstSlideClone
+        : wrapsBackward
+          ? lastSlideClone
+          : activeSlide;
+
+      if (isRefresh) {
+        clearTransitionState();
+        targetSlide.querySelector('.project-card')?.append(controls);
+        syncFocusMedia(targetSlide);
+        track.style.transform = `translateY(-${activeSlide.offsetTop}px)`;
+        status.textContent = `Project ${currentSlide + 1} of ${slides.length}`;
+        return;
+      }
+
+      clearTransitionState();
+      previousSlide.classList.add('is-transition-source');
+      targetSlide.classList.add(
+        'is-transition-target',
+        movingForward ? 'is-forward' : 'is-backward'
+      );
+      targetSlide.querySelector('.project-card')?.append(controls);
+      syncFocusMedia(targetSlide);
+      track.style.transform = `translateY(-${targetSlide.offsetTop}px)`;
       status.textContent = `Project ${currentSlide + 1} of ${slides.length}`;
+
+      if (wrapsForward || wrapsBackward) {
+        track.addEventListener('transitionend', () => {
+          track.style.transition = 'none';
+          activeSlide.querySelector('.project-card')?.append(controls);
+          track.style.transform = `translateY(-${activeSlide.offsetTop}px)`;
+          track.offsetHeight;
+          track.style.removeProperty('transition');
+          clearTransitionState();
+        }, { once: true });
+      } else {
+        track.addEventListener('transitionend', clearTransitionState, { once: true });
+      }
     };
+
+    if (track && slides?.length && lastSlideClone) {
+      syncFocusMedia(lastSlideClone);
+      track.style.transition = 'none';
+      track.style.transform = `translateY(-${slides[0].offsetTop}px)`;
+      track.offsetHeight;
+      track.style.removeProperty('transition');
+    }
 
     updateCarousel(0);
     carousel?.querySelector('[data-carousel-prev]')?.addEventListener('click', () => updateCarousel(currentSlide - 1));
     carousel?.querySelector('[data-carousel-next]')?.addEventListener('click', () => updateCarousel(currentSlide + 1));
-    window.addEventListener('resize', () => updateCarousel(currentSlide));
+    window.addEventListener('resize', () => {
+      if (!viewport || !track || !slides) return;
+      clearTransitionState();
+      syncFocusMedia(slides[currentSlide]);
+      track.style.transition = 'none';
+      track.style.transform = `translateY(-${slides[currentSlide].offsetTop}px)`;
+      track.offsetHeight;
+      track.style.removeProperty('transition');
+    });
   </script>
 
 </body>
