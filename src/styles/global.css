@@ -40,5 +40,23 @@
       color 300ms ease,
       background-color 300ms ease;
   }
+
+  button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--text);
+    color: var(--background);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    border: none;
+  }
+
+  button:hover {
+    background-color: var(--secondary-alt);
+    color: var(--text);
+    transition: 0.35s;
+  }
   
 

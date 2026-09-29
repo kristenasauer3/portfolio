@@ -10,42 +10,176 @@ import Footer from '../components/Footer.astro';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Portfolio</title>
   <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-      color: #1a1a1a;
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-    .contact-container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
+
+  h1 {
+    font-size: 5.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1.5rem;
+    max-width: 700px;
+  }
+
+  h2 {
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    font-size: 1.23rem;
+    color: var(--primary);
+  }
+
+  p {
+    max-width: 500px;
+  }
+
+  .contact-details {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    padding: 25px 0;
+  }
+
+  .contact-copy p {
+    max-width: 500px;
+  }
+
+  .designer-image-wrap {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .designer-image,
+  .designer-image-hover {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    transition:
+      opacity 420ms ease-out,
+      transform 480ms ease-out;
+  }
+
+  .designer-image-hover {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    opacity: 0;
+    transform: scale(0.985);
+    transition:
+      opacity 420ms ease-out,
+      transform 480ms ease-out;
+  }
+
+  .designer-image-wrap:hover .designer-image-hover,
+  .designer-image-wrap:focus-visible .designer-image-hover,
+  .designer-image-wrap[aria-pressed='true'] .designer-image-hover {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .designer-image-wrap:hover .designer-image,
+  .designer-image-wrap:focus-visible .designer-image,
+  .designer-image-wrap[aria-pressed='true'] .designer-image {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+
+  .designer-image-wrap:focus-visible {
+    outline: 3px solid var(--secondary);
+    outline-offset: 4px;
+  }
+
+  .designer-image-wrap:hover {
+    background-color: transparent;
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .designer-image,
+    .designer-image-hover {
+      transition: none;
+      transform: none;
     }
-    h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-    p { font-size: 1.25rem; color: #4a4a4a; margin-bottom: 3rem; }
-    .email-link {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      text-decoration: underline;
+  }
+
+  @media (max-width: 700px) {
+    .contact-details {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
-    .email-link:hover, .email-link:focus { color: #000000; }
+
+    .designer-image-wrap {
+      max-width: 100%;
+    }
+  }
   </style>
 </head>
 <body>
 
   <Navigation />
 
+  <!-- Section 1: Hero -->
   <main id="main-content" class="contact-container">
-    <h1>Let's work together.</h1>
-    <p>Available for freelance contracts, full-time agency roles, and layout consultations.</p>
-    
-    <!-- Large, accessible target for easy clicking -->
-    <a href="mailto:hello@yourdomain.com" class="email-link">hello@yourdomain.com</a>
+  <section class="hero-section">
+    <h1>We should design something.</h1>
+    <p>Have a project in mind? Looking for a designer? Just want to say hi? I’d love to hear from you.</p>
+  </section>
+
+  <!-- Section 2: Contact Details -->
+  <section class="contact-details">
+  <div class="contact-copy">
+  <h2>Let’s chat</h2>
+  <p>Whether you have a project, a job opportunity, or just want to talk design, feel free to reach out.</p>
+  <h3>Name</h3>
+  <p>Kristen Sauer</p>
+  <h3>Email</h3>
+  <p>kristenasauer@gmail.com</p>
+  <h3>LinkedIn</h3>
+  <p>kristen-sauer</p>
+  <h3>Location</h3>
+  <p>New York <span aria-hidden="true">·</span> Open to NYC opportunities</p>
+  </div>
+  <button class="designer-image-wrap" type="button" aria-label="Toggle alternate portrait" aria-pressed="false">
+  <img class="designer-image" src="/images/ks-2026.jpg" alt="Portrait of designer Kristen Sauer">
+  <img class="designer-image-hover" src="/images/ks.2-2026.jpg" alt="" aria-hidden="true">
+  </button>
+
+  </section>
+
+  <!-- Section 3: Contact Form -->
+  <section class="contact-form">
+  <h2>Tell me a little about it.</h2>
+  <h3>Name</h3>
+  <p>Your Name</p>
+  <h3>Email</h3>
+  <p>you@example.com</p>
+  <h3>Description</h3>
+  <p>Tell me about your project, idea, or opportunity...</p>
+  <button>Send it <span aria-hidden="true">→</span></button>
+  </section>
   </main>
 
   <Footer />
 
+  <script>
+    const portraitToggle = document.querySelector<HTMLButtonElement>('.designer-image-wrap');
+
+    portraitToggle?.addEventListener('click', () => {
+      const isPressed = portraitToggle.getAttribute('aria-pressed') === 'true';
+      portraitToggle.setAttribute('aria-pressed', String(!isPressed));
+    });
+  </script>
 </body>
 </html>
