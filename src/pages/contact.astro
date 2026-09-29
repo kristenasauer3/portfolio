@@ -20,7 +20,7 @@ import Footer from '../components/Footer.astro';
 
   .hero-section p {
     font-size: 1.5rem;
-    max-width: 700px;
+    max-width: 550px;
   }
 
   h2 {
@@ -32,10 +32,6 @@ import Footer from '../components/Footer.astro';
     color: var(--text);
   }
 
-  p {
-    max-width: 500px;
-  }
-
   .contact-details {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -45,7 +41,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .contact-copy p {
-    max-width: 500px;
+    max-width: 400px;
   }
 
   .contact {
@@ -55,7 +51,9 @@ import Footer from '../components/Footer.astro';
 
   .contact-form {
     margin: 4rem 0;
-    padding-top: 2rem;
+    padding: 2rem;
+    border-radius: 24px;
+    background-color: var(--form-box);
   }
 
   .contact-form form {
@@ -96,18 +94,69 @@ import Footer from '../components/Footer.astro';
 
   .form-field input:focus-visible,
   .form-field textarea:focus-visible {
-    outline: 3px solid var(--secondary);
+    outline: 3px solid var(--focus);
     outline-offset: 2px;
   }
 
   .contact-submit {
     justify-self: start;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 0;
+    border-radius: 4px;
+    background-color: var(--text);
+    color: var(--background);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
   }
 
-  .form-status {
+  .contact-submit:hover {
+    background-color: var(--secondary-alt);
+    color: var(--text);
+    transition: 0.35s;
+  }
+
+  #form-status {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5em;
     grid-column: 1 / -1;
     min-height: 1.5em;
     margin: 0;
+  }
+
+  #form-status[data-state='error'] {
+    color: #c62828;
+  }
+
+  #form-status[data-state='success'] {
+    color: var(--secondary);
+  }
+
+  :global(html[data-theme='dark']) #form-status[data-state='error'] {
+    color: #ff6b6b;
+  }
+
+  #form-status[data-state='error']::before {
+    content: '';
+    flex: 0 0 auto;
+    align-self: stretch;
+    aspect-ratio: 1;
+    background-color: currentColor;
+    -webkit-mask: url('/images/error.svg') center / contain no-repeat;
+    mask: url('/images/error.svg') center / contain no-repeat;
+  }
+
+  #form-status[data-state='success']::before {
+    content: '';
+    flex: 0 0 auto;
+    align-self: stretch;
+    aspect-ratio: 1;
+    background-color: currentColor;
+    -webkit-mask: url('/images/success.svg') center / contain no-repeat;
+    mask: url('/images/success.svg') center / contain no-repeat;
   }
 
   .contact-submit:disabled,
@@ -125,12 +174,12 @@ import Footer from '../components/Footer.astro';
     position: relative;
     width: 100%;
     padding: 0;
-    border: 0;
-    border-radius: 0;
     background: transparent;
     color: inherit;
     text-align: left;
     cursor: pointer;
+    border-radius: 24px;
+
   }
 
   .designer-image,
@@ -252,23 +301,28 @@ import Footer from '../components/Footer.astro';
         <input id="website" type="text" name="_honey" tabindex="-1" autocomplete="off">
       </label>
     </div>
-    <div class="form-field">
-      <label for="name">Name
-        <input id="name" name="name" type="text" autocomplete="name">
-      </label>
-    </div>
-    <div class="form-field">
-      <label for="email">Email
-        <input id="email" name="email" type="email" autocomplete="email">
-      </label>
-    </div>
-    <div class="form-field form-field-message">
-      <label for="message">Description
-        <textarea id="message" name="message" placeholder="Tell me about your project, idea, or opportunity..."></textarea>
-      </label>
-    </div>
-    <button class="contact-submit" type="submit">Send it <span aria-hidden="true">→</span></button>
-    <p class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
+<div class="form-field">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text" autocomplete="name">
+</div>
+
+<div class="form-field">
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" autocomplete="email">
+</div>
+
+<div class="form-field form-field-message">
+  <label for="message">Description</label>
+  <span id="message-hint" class="form-hint">Tell me about your project</span>
+  <textarea id="message" name="message" aria-describedby="message-hint"></textarea>
+</div>
+
+<button class="contact-submit" type="submit">
+  Send it <span aria-hidden="true">→</span>
+</button>
+
+<!-- Your ARIA status area for same-page success/error messages -->
+<div id="form-status" role="status" aria-live="polite" aria-atomic="true"></div>
   </form>
   </section>
   </main>
@@ -283,12 +337,13 @@ import Footer from '../components/Footer.astro';
       event.preventDefault();
 
       const submitButton = contactForm.querySelector<HTMLButtonElement>('[type="submit"]');
-      const status = contactForm.querySelector<HTMLParagraphElement>('.form-status');
+      const status = contactForm.querySelector<HTMLDivElement>('#form-status');
       if (!submitButton || !status) return;
 
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), 15000);
       submitButton.disabled = true;
+      status.dataset.state = 'sending';
       status.textContent = 'Sending...';
 
       try {
@@ -307,12 +362,15 @@ import Footer from '../components/Footer.astro';
           throw new Error('Form submission was rejected.');
         }
 
-        status.textContent = 'Your message was submitted. Thank you.';
+        status.dataset.state = 'success';
+        status.textContent = 'Your message was submitted and Kristen will get back to you soon. Thank you';
         contactForm.reset();
       } catch (error) {
-        status.textContent = error instanceof DOMException && error.name === 'AbortError'
+        const message = error instanceof DOMException && error.name === 'AbortError'
           ? 'The request timed out. Please try again or email kristenasauer@gmail.com.'
           : 'Your message could not be submitted. Please try again or email kristenasauer@gmail.com.';
+        status.dataset.state = 'error';
+        status.textContent = message;
       } finally {
         window.clearTimeout(timeout);
         submitButton.disabled = false;
