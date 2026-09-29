@@ -29,7 +29,7 @@ import Footer from '../components/Footer.astro';
 
   h3 {
     font-size: 1.23rem;
-    color: var(--primary);
+    color: var(--text);
   }
 
   p {
@@ -46,6 +46,79 @@ import Footer from '../components/Footer.astro';
 
   .contact-copy p {
     max-width: 500px;
+  }
+
+  .contact {
+    border-left: 5px solid var(--primary);
+    padding: 0 0 0 1rem;
+  }
+
+  .contact-form {
+    margin: 4rem 0;
+    padding-top: 2rem;
+  }
+
+  .contact-form form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    max-width: 700px;
+  }
+
+  .form-field {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .form-field-message {
+    grid-column: 1 / -1;
+  }
+
+  .form-field label {
+    font-weight: 600;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--description);
+    border-radius: 4px;
+    background: var(--background);
+    color: var(--text);
+    font: inherit;
+  }
+
+  .form-field textarea {
+    min-height: 10rem;
+    resize: vertical;
+  }
+
+  .form-field input:focus-visible,
+  .form-field textarea:focus-visible {
+    outline: 3px solid var(--secondary);
+    outline-offset: 2px;
+  }
+
+  .contact-submit {
+    justify-self: start;
+  }
+
+  .form-status {
+    grid-column: 1 / -1;
+    min-height: 1.5em;
+    margin: 0;
+  }
+
+  .contact-submit:disabled,
+  .contact-submit:disabled:hover {
+    background: var(--description);
+    color: var(--background);
+    cursor: not-allowed;
+  }
+
+  .form-honeypot {
+    display: none;
   }
 
   .designer-image-wrap {
@@ -120,6 +193,14 @@ import Footer from '../components/Footer.astro';
       gap: 2rem;
     }
 
+    .contact-form form {
+      grid-template-columns: 1fr;
+    }
+
+    .form-field-message {
+      grid-column: auto;
+    }
+
     .designer-image-wrap {
       max-width: 100%;
     }
@@ -142,14 +223,16 @@ import Footer from '../components/Footer.astro';
   <div class="contact-copy">
   <h2>Let’s chat</h2>
   <p>Whether you have a project, a job opportunity, or just want to talk design, feel free to reach out.</p>
-  <h3>Name</h3>
-  <p>Kristen Sauer</p>
-  <h3>Email</h3>
-  <p>kristenasauer@gmail.com</p>
-  <h3>LinkedIn</h3>
-  <p>kristen-sauer</p>
-  <h3>Location</h3>
-  <p>New York <span aria-hidden="true">·</span> Open to NYC opportunities</p>
+    <div class="contact">
+      <h3>Name</h3>
+      <p>Kristen Sauer</p>
+      <h3>Email</h3>
+      <p>kristenasauer@gmail.com</p>
+      <h3>LinkedIn</h3>
+      <p>kristen-sauer</p>
+      <h3>Location</h3>
+      <p>New York <span aria-hidden="true">·</span> Open to NYC opportunities</p>
+    </div>
   </div>
   <button class="designer-image-wrap" type="button" aria-label="Toggle alternate portrait" aria-pressed="false">
   <img class="designer-image" src="/images/ks-2026.jpg" alt="Portrait of designer Kristen Sauer">
@@ -161,13 +244,32 @@ import Footer from '../components/Footer.astro';
   <!-- Section 3: Contact Form -->
   <section class="contact-form">
   <h2>Tell me a little about it.</h2>
-  <h3>Name</h3>
-  <p>Your Name</p>
-  <h3>Email</h3>
-  <p>you@example.com</p>
-  <h3>Description</h3>
-  <p>Tell me about your project, idea, or opportunity...</p>
-  <button>Send it <span aria-hidden="true">→</span></button>
+  <form action="https://formsubmit.co/kristenasauer@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New portfolio inquiry">
+    <input type="hidden" name="_template" value="table">
+    <div class="form-honeypot" aria-hidden="true">
+      <label for="website">Leave this field empty
+        <input id="website" type="text" name="_honey" tabindex="-1" autocomplete="off">
+      </label>
+    </div>
+    <div class="form-field">
+      <label for="name">Name
+        <input id="name" name="name" type="text" autocomplete="name">
+      </label>
+    </div>
+    <div class="form-field">
+      <label for="email">Email
+        <input id="email" name="email" type="email" autocomplete="email">
+      </label>
+    </div>
+    <div class="form-field form-field-message">
+      <label for="message">Description
+        <textarea id="message" name="message" placeholder="Tell me about your project, idea, or opportunity..."></textarea>
+      </label>
+    </div>
+    <button class="contact-submit" type="submit">Send it <span aria-hidden="true">→</span></button>
+    <p class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  </form>
   </section>
   </main>
 
@@ -175,6 +277,47 @@ import Footer from '../components/Footer.astro';
 
   <script>
     const portraitToggle = document.querySelector<HTMLButtonElement>('.designer-image-wrap');
+    const contactForm = document.querySelector<HTMLFormElement>('.contact-form form');
+
+    contactForm?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const submitButton = contactForm.querySelector<HTMLButtonElement>('[type="submit"]');
+      const status = contactForm.querySelector<HTMLParagraphElement>('.form-status');
+      if (!submitButton || !status) return;
+
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 15000);
+      submitButton.disabled = true;
+      status.textContent = 'Sending...';
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/kristenasauer@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(contactForm).entries())),
+          signal: controller.signal,
+        });
+        const result = await response.json();
+
+        if (!response.ok || result.success === false || result.success === 'false') {
+          throw new Error('Form submission was rejected.');
+        }
+
+        status.textContent = 'Your message was submitted. Thank you.';
+        contactForm.reset();
+      } catch (error) {
+        status.textContent = error instanceof DOMException && error.name === 'AbortError'
+          ? 'The request timed out. Please try again or email kristenasauer@gmail.com.'
+          : 'Your message could not be submitted. Please try again or email kristenasauer@gmail.com.';
+      } finally {
+        window.clearTimeout(timeout);
+        submitButton.disabled = false;
+      }
+    });
 
     portraitToggle?.addEventListener('click', () => {
       const isPressed = portraitToggle.getAttribute('aria-pressed') === 'true';
