@@ -31,7 +31,11 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     <header class="case-study-hero">
       <Navigation />
       <div class="hero-copy">
-        <p class="hero-eyebrow">Selected project</p>
+        <p class="hero-eyebrow">
+          <span class="hero-project-type">{project.projectType}</span>
+          <span class="hero-project-separator" aria-hidden="true">·</span>
+          <span class="hero-project-date">{project.projectDate}</span>
+        </p>
         <h1>{project.title}</h1>
         <p class="hero-description">{project.description}</p>
       </div>
@@ -92,8 +96,8 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     top: -5rem;
     left: 1rem;
     padding: 0.75rem 1rem;
-    color: #171717;
-    background: #fff;
+    color: var(--text);
+    background: var(--background);
     font-weight: 700;
   }
 
@@ -110,7 +114,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     overflow: hidden;
     margin: -3rem calc(50% - 50vw) 0;
     padding: 0  max(1.5rem, calc((100vw - 1100px) / 2));
-    color: #fff;
+    color: var(--background);
     background:
       radial-gradient(ellipse at 83% 36%, rgb(255 136 57 / 82%), transparent 42%),
       linear-gradient(112deg, #a91d18 0%, #e43e1b 56%, #ff6b2e 100%);
@@ -125,7 +129,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
   :global(.case-study-hero .nav-link),
   :global(.case-study-hero .nav-logo),
   :global(.case-study-hero .theme-toggle) {
-    color: #fff;
+    color: var(--background);
   }
 
   .hero-copy {
@@ -136,11 +140,22 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
   }
 
   .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1.0rem;
     margin: 0 0 0.8rem;
-    font-size: 0.8rem;
+    font-size: 1.0rem;
     font-style: italic;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hero-project-type {
+    font-weight: 400;
+  }
+
+  .hero-project-date {
+    font-weight: 400;
   }
 
   .hero-copy h1 {
@@ -154,6 +169,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     margin: 0;
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     line-height: 1.5;
+    font-weight: 300;
   }
 
   .hero-mark {
