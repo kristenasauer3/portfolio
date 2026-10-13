@@ -275,6 +275,11 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     aspect-ratio: 1.6;
   }
 
+  .product-grid figure:nth-child(3) {
+    grid-column: 1 / -1;
+    aspect-ratio: 3.2;
+  }
+
   .next-project {
     display: flex;
     min-height: 7rem;
@@ -368,6 +373,10 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
 
     .product-grid {
       grid-template-columns: 1fr;
+    }
+
+    .product-grid figure:nth-child(3) {
+      aspect-ratio: 1.6;
     }
 
     .next-project {

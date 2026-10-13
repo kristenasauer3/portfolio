@@ -27,7 +27,20 @@
         }
       }
     ],
-    "gallery": []
+    "gallery": [
+      {
+        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Colorful cocktails arranged on a bar."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Bartender preparing a cocktail."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
+        "alt": "A cocktail garnished with citrus and herbs."
+      }
+    ]
   },
   {
     "slug": "everyday-energy",
@@ -54,7 +67,20 @@
         "image": null
       }
     ],
-    "gallery": []
+    "gallery": [
+      {
+        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Colorful cocktails arranged on a bar."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Bartender preparing a cocktail."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
+        "alt": "A cocktail garnished with citrus and herbs."
+      }
+    ]
   },
   {
     "slug": "hyrax-haven",
@@ -81,7 +107,20 @@
         "image": null
       }
     ],
-    "gallery": []
+    "gallery": [
+      {
+        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Colorful cocktails arranged on a bar."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Bartender preparing a cocktail."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
+        "alt": "A cocktail garnished with citrus and herbs."
+      }
+    ]
   },
   {
     "slug": "scoop-strong",
@@ -108,7 +147,20 @@
         "image": null
       }
     ],
-    "gallery": []
+    "gallery": [
+      {
+        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Colorful cocktails arranged on a bar."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Bartender preparing a cocktail."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
+        "alt": "A cocktail garnished with citrus and herbs."
+      }
+    ]
   },
   {
     "slug": "splitli",
@@ -135,6 +187,19 @@
         "image": null
       }
     ],
-    "gallery": []
+    "gallery": [
+      {
+        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Colorful cocktails arranged on a bar."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
+        "alt": "Bartender preparing a cocktail."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
+        "alt": "A cocktail garnished with citrus and herbs."
+      }
+    ]
   }
 ]
