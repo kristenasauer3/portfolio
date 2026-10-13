@@ -28,7 +28,10 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="case-study-hero">
+    <header class:list={['case-study-hero', { 'has-hero-image': project.heroImage }]}>
+      {project.heroImage && (
+        <img class="hero-image" src={project.heroImage.url} alt={project.heroImage.alt} decoding="async" />
+      )}
       <Navigation />
       <div class="hero-copy">
         <p class="hero-eyebrow">
@@ -39,7 +42,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
         <h1>{project.title}</h1>
         <p class="hero-description">{project.description}</p>
       </div>
-      <span class="hero-mark" aria-hidden="true">✳</span>
+      {!project.heroImage && <span class="hero-mark" aria-hidden="true">✳</span>}
     </header>
 
     <main id="main-content" tabindex="-1">
@@ -116,10 +119,21 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     overflow: hidden;
     margin: -3rem calc(50% - 50vw) 0;
     padding: 0  max(1.5rem, calc((100vw - 1100px) / 2));
-    color: var(--background);
-    background:
-      radial-gradient(ellipse at 83% 36%, rgb(255 136 57 / 82%), transparent 42%),
-      linear-gradient(112deg, #a91d18 0%, #e43e1b 56%, #ff6b2e 100%);
+    color: #ffffff;
+  }
+
+  .case-study-hero.has-hero-image {
+    background: none;
+  }
+
+  .hero-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    filter: brightness(0.4);
+    object-fit: cover;
+    object-position: center;
   }
 
   :global(.case-study-hero .navigation) {

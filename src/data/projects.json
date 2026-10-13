@@ -5,6 +5,10 @@
     "projectType": "Web Design",
     "projectDate": "Fall 2025",
     "description": "An accessible terminology search engine website for professional mixologists.",
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
+      "alt": "Bright workspace with a laptop and design materials."
+    },
     "sections": [
       {
         "title": "The Concept",
@@ -48,6 +52,10 @@
     "projectType": "UI/UX Design",
     "projectDate": "Fall 2025",
     "description": "An app built to track an individual's specific daily health statistics.",
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
+      "alt": "Bright workspace with a laptop and design materials."
+    },
     "sections": [
       {
         "title": "The Concept",
@@ -88,6 +96,10 @@
     "projectType": "Web Design",
     "projectDate": "Spring 2025",
     "description": "A fictitious non-profit website about the Hyrax.",
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
+      "alt": "Bright workspace with a laptop and design materials."
+    },
     "sections": [
       {
         "title": "The Concept",
@@ -128,6 +140,10 @@
     "projectType": "Editorial Design",
     "projectDate": "Winter 2025",
     "description": "High-protein ice cream book and guide to the Ninja Creami appliance.",
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
+      "alt": "Bright workspace with a laptop and design materials."
+    },
     "sections": [
       {
         "title": "The Concept",
@@ -168,6 +184,10 @@
     "projectType": "Web Design",
     "projectDate": "Spring 2026",
     "description": "A beginner-friendly website to help people get started on their fitness journey.",
+    "heroImage": {
+      "url": "/images/splitli-main.jpg",
+      "alt": "Splitli banner showing its logo and fitness training message over a weightlifting photograph."
+    },
     "sections": [
       {
         "title": "The Concept",
@@ -175,7 +195,7 @@
           "Splitli is a conceptual website for people seeking guidance on their fitness journey. Fitness progress is often mistaken for just getting active, but Splitli informs users that there is a better method that can hold users accountable, increase progress, and improve the daily experience. The goal of the project was to create a non-intimidating experience for new gym-goers and organize helpful content in a digestible and modern format."
         ],
         "image": {
-          "url": "/images/splitli/calc.jpg",
+          "url": "/images/splitli-4.jpeg",
           "alt": "Calculator interface showcasing extra large buttons exceeding WCAG target size guidelines."
         }
       },
@@ -184,21 +204,24 @@
         "paragraphs": [
           "The website discusses what a split is, the benefits, a glossary of gym terms, and a form to match users to their best-matching split. I prioritized accessibility and user experience in the production of the site, so users from all walks of life can engage with its content. The design features a clean layout, bold color palette, and structured typography to optimize user experience."
         ],
-        "image": null
+        "image": {
+          "url": "/images/splitli-5.png",
+          "alt": "User interface showing a list of available splits with a call to action."
+        }
       }
     ],
     "gallery": [
       {
-        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
-        "alt": "Colorful cocktails arranged on a bar."
+        "url": "/images/splitli-1.jpg",
+        "alt": "Splitli gym website screenshot showing its footer over a weightlifting background."
       },
       {
-        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
-        "alt": "Bartender preparing a cocktail."
+        "url": "/images/splitli-2.jpg",
+        "alt": "Splitli website homepage with fitness messaging and a gym background."
       },
       {
-        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
-        "alt": "A cocktail garnished with citrus and herbs."
+        "url": "/images/splitli-3.jpg",
+        "alt": "Splitli website conclusion section with a call to learn key training terms."
       }
     ]
   }
