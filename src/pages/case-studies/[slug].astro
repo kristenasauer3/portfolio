@@ -48,13 +48,15 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
           <section class="content-section">
             <div class="section-copy">
               <h2>{section.title}</h2>
-              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              <div class="section-paragraphs">
+                {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
             </div>
-            {section.image && (
-              <figure class="section-image">
+            <figure class="section-image" aria-hidden={!section.image}>
+              {section.image && (
                 <img src={section.image.url} alt={section.image.alt} loading="lazy" decoding="async" />
-              </figure>
-            )}
+              )}
+            </figure>
           </section>
         ))}
 
@@ -192,31 +194,49 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
   }
 
   .case-study-sections {
-    padding: 2.5rem 0 1.5rem;
+    margin-left: clamp(-1.5rem, calc(550px - 50vw), 0px);
+    padding: 4rem 0;
   }
 
   .content-section {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    align-items: center;
-    gap: clamp(2rem, 7vw, 5.5rem);
+    display: flex;
+    align-items: flex-end;
+    gap: 2.5rem;
     padding: 1.25rem 0 2rem;
   }
 
-  .section-copy h2,
+  .content-section + .content-section {
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .section-copy {
+    display: flex;
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    flex: 0.8 1 0;
+  }
+
+  .section-copy h2 {
+    margin: 0;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    line-height: 1.2;
+  }
+
   .product-gallery h2 {
     margin: 0 0 1.5rem;
     font-size: clamp(1.4rem, 2.5vw, 1.8rem);
     line-height: 1.2;
   }
 
-  .section-copy p {
+  .section-paragraphs p {
     margin: 0 0 1rem;
     font-size: 1rem;
     line-height: 1.65;
   }
 
-  .section-copy p:last-child {
+  .section-paragraphs p:last-child {
     margin-bottom: 0;
   }
 
@@ -229,6 +249,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
 
   .section-image {
     width: 100%;
+    flex: 1.10 1 0;
     aspect-ratio: 1.6;
   }
 
@@ -334,9 +355,15 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     }
 
     .content-section {
-      grid-template-columns: 1fr;
+      flex-direction: column;
+      align-items: stretch;
       gap: 1.25rem;
       padding: 1.5rem 0;
+    }
+
+    .section-copy,
+    .section-image {
+      flex: none;
     }
 
     .product-grid {
