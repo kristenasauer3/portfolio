@@ -1,9 +1,7 @@
 ---
-// src/pages/case-studies/[slug].astro
 import '../../styles/global.css';
 import projects from '../../data/projects.json';
 import Navigation from '../../components/Navigation.astro';
-import ImageGallery from '../../components/ImageGallery.astro';
 import Footer from '../../components/Footer.astro';
 
 export function getStaticPaths() {
@@ -14,6 +12,9 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const currentProjectIndex = projects.findIndex(({ slug }) => slug === project.slug);
+const nextProject = projects[(currentProjectIndex + 1) % projects.length];
+const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
 ---
 
 <!doctype html>
@@ -25,133 +26,317 @@ const { project } = Astro.props;
     <title>{project.title} | Portfolio Case Study</title>
   </head>
   <body>
-    <!-- WCAG AA Requirement: Skip Link for keyboard users -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <Navigation />
+    <header class="case-study-hero">
+      <Navigation />
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Selected project</p>
+        <h1>{project.title}</h1>
+        <p class="hero-description">{project.description}</p>
+      </div>
+      <span class="hero-mark" aria-hidden="true">✳</span>
+    </header>
 
-    <!-- Wrapper injecting page themes securely -->
-    <div class={`case-study-container ${project.theme || 'light-theme'}`}>
-      
-      <main id="main-content" tabindex="-1">
-        <header class="case-study-header">
-          <h1>{project.title}</h1>
-        </header>
-        
-        <!-- Safe HTML injection maintaining semantic elements, ARIA nodes, and nested headings -->
-        <article class="case-study-body" set:html={project.htmlContent} />
+    <main id="main-content" tabindex="-1">
+      <div class="case-study-sections">
+        {project.sections.map((section) => (
+          <section class="content-section">
+            <div class="section-copy">
+              <h2>{section.title}</h2>
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+            {section.image && (
+              <figure class="section-image">
+                <img src={section.image.url} alt={section.image.alt} loading="lazy" decoding="async" />
+              </figure>
+            )}
+          </section>
+        ))}
 
-        <!-- Highly accessible image gallery component instantiation -->
-        <ImageGallery images={project.images} projectTitle={project.title} />
-        
-        <footer class="case-study-footer">
-          <a href="/work/" class="back-link">
-            <span aria-hidden="true">←</span> Back to all case studies
-          </a>
-        </footer>
-      </main>
+        {project.gallery.length > 0 && (
+          <section class="product-gallery" aria-labelledby="product-heading">
+            <h2 id="product-heading">The Product</h2>
+            <div class="product-grid">
+              {project.gallery.map((image) => (
+                <figure>
+                  <img src={image.url} alt={image.alt} loading="lazy" decoding="async" />
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
 
-    </div>
+        <a class="next-project" href={`/case-studies/${nextProject.slug}/`}>
+          <span class="next-copy">
+            <span class="next-eyebrow">Up Next</span>
+            <span class="next-title">{nextProject.title}</span>
+          </span>
+          <span class="next-rule" aria-hidden="true"></span>
+          {nextProjectImage && (
+            <img class="next-image" src={nextProjectImage.url} alt="" loading="lazy" />
+          )}
+          <span class="next-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </main>
 
     <Footer />
   </body>
 </html>
 
 <style>
-  /* --- WCAG AA Accessible Base Styles --- */
-  
-  /* Skip Link Styling (hidden until focused via keyboard Tab) */
   .skip-link {
     position: absolute;
-    top: -100px;
+    z-index: 10;
+    top: -5rem;
     left: 1rem;
-    padding: 0.75rem 1.5rem;
-    z-index: 100;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
+    padding: 0.75rem 1rem;
+    color: #171717;
+    background: #fff;
+    font-weight: 700;
   }
+
   .skip-link:focus {
     top: 1rem;
-    outline: 3px solid #ffcc00;
-    outline-offset: 2px;
   }
 
-  /* Structural Containers */
-  .case-study-container {
-    min-height: 100vh;
-    padding: 2rem 1.5rem;
-    transition: background-color 0.2s ease;
+  .case-study-hero {
+    position: relative;
+    display: flex;
+    min-height: 23rem;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    margin: -3rem calc(50% - 50vw) 0;
+    padding: 0  max(1.5rem, calc((100vw - 1100px) / 2));
+    color: #fff;
+    background:
+      radial-gradient(ellipse at 83% 36%, rgb(255 136 57 / 82%), transparent 42%),
+      linear-gradient(112deg, #a91d18 0%, #e43e1b 56%, #ff6b2e 100%);
   }
-  
-  main {
-    max-width: 800px; /* Optimal readability width (around 70-80 characters per line) */
+
+  :global(.case-study-hero .navigation) {
+    z-index: 1;
+    width: 100%;
     margin: 0 auto;
   }
+
+  :global(.case-study-hero .nav-link),
+  :global(.case-study-hero .nav-logo),
+  :global(.case-study-hero .theme-toggle) {
+    color: #fff;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    width: min(34rem, 75%);
+    padding: 2.4rem 0 3.5rem;
+  }
+
+  .hero-eyebrow {
+    margin: 0 0 0.8rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .hero-copy h1 {
+    margin: 0 0 0.8rem;
+    font-size: clamp(2.3rem, 5.5vw, 4.5rem);
+    line-height: 1.04;
+  }
+
+  .hero-description {
+    max-width: 28rem;
+    margin: 0;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.5;
+  }
+
+  .hero-mark {
+    position: absolute;
+    right: 8%;
+    bottom: -7rem;
+    color: rgb(255 255 255 / 13%);
+    font-size: clamp(19rem, 40vw, 35rem);
+    line-height: 1;
+    transform: rotate(-15deg);
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
   main:focus {
-    outline: none; /* Accessible remove outline ONLY because target is programmatically focused via skip link */
+    outline: none;
   }
 
-  /* Typography & Contrast Regulations (Ensuring minimum 4.5:1 contrast ratios) */
-  .light-theme {
-    background-color: #ffffff;
-    color: #1a202c; /* Clean off-black */
-  }
-  .dark-theme {
-    background-color: #1a202c;
-    color: #edf2f7; /* Off-white */
+  .case-study-sections {
+    padding: 2.5rem 0 1.5rem;
   }
 
-  h1 {
-    font-size: clamp(2rem, 4vw, 3rem); /* Responsive fluid typography */
+  .content-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: clamp(2rem, 7vw, 5.5rem);
+    padding: 1.25rem 0 2rem;
+  }
+
+  .section-copy h2,
+  .product-gallery h2 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
     line-height: 1.2;
-    margin-bottom: 2rem;
   }
 
-  /* Targeting Dynamically Injected Content Securely */
-  .case-study-body :global(p) {
-    font-size: 1.125rem; /* Accessible base sizing (18px equivalent) */
-    line-height: 1.75;  /* WCAG rule: line-height at least 1.5 times the font size */
-    margin-bottom: 1.75rem;
+  .section-copy p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .section-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-image,
+  .product-grid figure {
+    overflow: hidden;
+    margin: 0;
+    background: #e9e7e4;
+  }
+
+  .section-image {
+    width: 100%;
+    aspect-ratio: 1.6;
+  }
+
+  .section-image img,
+  .product-grid img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-gallery {
+    padding: 1.5rem 0 2rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .product-grid figure {
+    aspect-ratio: 1.6;
+  }
+
+  .next-project {
+    display: flex;
+    min-height: 7rem;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 2rem;
     color: inherit;
+    text-decoration: none;
   }
 
-  .case-study-body :global(h3) {
-    font-size: 1.5rem;
-    line-height: 1.3;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+  .next-copy {
+    display: flex;
+    min-width: max-content;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
-  .case-study-body :global(.custom-callout) {
-    border-left: 4px solid #0056b3;
-    background-color: rgba(0, 86, 179, 0.06);
-    padding: 1.25rem;
-    margin: 2rem 0;
-    border-radius: 0 8px 8px 0;
+  .next-eyebrow {
+    color: var(--description);
   }
 
-  /* Dark Theme Callout Contrast Readjustment */
-  .dark-theme .case-study-body :global(.custom-callout) {
-    border-left-color: #66b2ff;
-    background-color: rgba(102, 178, 255, 0.12);
-  }
-
-  /* Navigation Links styling */
-  .back-link, .case-study-body :global(a) {
-    color: #0056b3;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  .next-title {
+    font-size: 1.25rem;
     font-weight: 600;
   }
-  .dark-theme .back-link, .dark-theme .case-study-body :global(a) {
-    color: #66b2ff;
+
+  .next-rule {
+    height: 1px;
+    flex: 1;
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1.5px);
+    background-position: center;
+    background-size: 8px 2px;
   }
 
-  /* Clear focus indicator rules for everything */
-  .case-study-container :global(a:focus), 
-  .case-study-container :global(button:focus) {
-    outline: 3px solid #ffcc00 !important;
-    outline-offset: 2px !important;
+  .next-image {
+    width: clamp(6rem, 23vw, 12rem);
+    height: 5rem;
+    object-fit: cover;
+  }
+
+  .next-arrow {
+    font-size: 1.5rem;
+  }
+
+  .next-project:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 4px;
+  }
+
+  :global(html[data-theme='dark']) .section-image,
+  :global(html[data-theme='dark']) .product-grid figure {
+    background: #292929;
+  }
+
+  @media (max-width: 650px) {
+    .case-study-hero {
+      min-height: 25rem;
+      padding-inline: 1.25rem;
+    }
+
+    :global(.case-study-hero .navigation) {
+      padding-inline: 0;
+    }
+
+    .hero-copy {
+      width: 100%;
+      padding-bottom: 2.5rem;
+    }
+
+    .hero-mark {
+      right: -4rem;
+      bottom: -4rem;
+      font-size: 18rem;
+    }
+
+    .case-study-sections {
+      padding-top: 1rem;
+    }
+
+    .content-section {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .next-project {
+      gap: 0.65rem;
+    }
+
+    .next-copy {
+      min-width: 0;
+    }
+
+    .next-title {
+      font-size: 1rem;
+    }
   }
 </style>
