@@ -5,9 +5,13 @@
     "projectType": "Web Design",
     "projectDate": "Fall 2025",
     "description": "An accessible terminology search engine website for professional mixologists.",
+    "upNextImage": {
+      "url": "/images/EE-main.jpg",
+      "alt": "Preview of my project Everyday Energy"
+},
     "heroImage": {
-      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
-      "alt": "Bright workspace with a laptop and design materials."
+      "url": "/images/BG-1.jpg",
+      "alt": "A hero image of bartender's glossary."
     },
     "sections": [
       {
@@ -16,8 +20,8 @@
           "Bartender’s Glossary is a website that delivers a quick guide to creating the bar’s most popular drinks and using its tools. As a bartender, I used my years of knowledge to write and design the content for the page. The goal of the project was to create a space for bartenders to educate themselves on how to use their bar to its fullest potential, make drinks that shape the customer experience, and quickly display recipes for those forgetful moments during a shift."
         ],
         "image": {
-          "url": "/images/bartender/hero.jpg",
-          "alt": "Desktop view of the glossary interface showing high-contrast search elements."
+          "url": "/images/BG-3.jpg",
+          "alt": "Desktop view of the glossary interface showing drink cards featuring strong heirarchy and clear typography."
         }
       },
       {
@@ -26,23 +30,23 @@
           "The website features organized sections displaying cocktail recipes, shot recipes, and explaining bar tools. I prioritized the website to have a quick interaction time with navigation tools and a single page to decrease clicks and improve content delivery time. The website utilizes a simple color palette and typography to emphasize the content and improve user experience."
         ],
         "image": {
-          "url": "/images/bartender/mobile.jpg",
-          "alt": "Mobile view displaying a clear, focusable navigation drawer menu."
+          "url": "/images/BG-4.jpg",
+          "alt": "Desktop view displaying bar tool cards featuring strong heirarchy and clear typography."
         }
       }
     ],
     "gallery": [
       {
-        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
-        "alt": "Colorful cocktails arranged on a bar."
+        "url": "/images/BG-6.jpg",
+        "alt": "Mobile view mockup of the glossary website showing cocktail recipe cards and drink of the month section."
       },
       {
-        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
-        "alt": "Bartender preparing a cocktail."
+        "url": "/images/BG-7.jpg",
+        "alt": "Desktop view mockup of the hero section of the glossary website."
       },
       {
-        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
-        "alt": "A cocktail garnished with citrus and herbs."
+        "url": "/images/BG-2.jpg",
+        "alt": "Drink of the season section featuring spring cocktails."
       }
     ]
   },
@@ -52,8 +56,12 @@
     "projectType": "UI/UX Design",
     "projectDate": "Fall 2025",
     "description": "An app built to track an individual's specific daily health statistics.",
+    "upNextImage": {
+      "url": "/images/HH-main.jpg",
+      "alt": "Preview of my project Hyrax Haven"
+},
     "heroImage": {
-      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
+      "url": "/images/EE-main.jpg",
       "alt": "Bright workspace with a laptop and design materials."
     },
     "sections": [
@@ -63,8 +71,8 @@
           "Everyday Energy is an app that tracks users’ health and offers an approachable app experience. I find that many health apps can be difficult to navigate and non-comprehensive, so I created Everyday Energy to put all the important information in one spot. The goal of the project was to create a space for users to access their daily health statistics to aid in their fitness journey and make wellness easy."
         ],
         "image": {
-          "url": "/images/energy/dashboard.jpg",
-          "alt": "Dashboard view showing keyboard-accessible clean energy metric charts."
+          "url": "/images/EE-1.svg",
+          "alt": "Everyday energy logo with sun iconography."
         }
       },
       {
@@ -72,21 +80,25 @@
         "paragraphs": [
           "The app features organized sections displaying statistics such as mood, sleep, steps, activity, and screen time. It also offers other services such as a mood tracker, sleep tracker, and daily journal. I prioritized the website to have a welcoming presence and intuitive navigation through its color palette, layout, and typography."
         ],
-        "image": null
+        "image": {
+          "url": "/images/EE-2.jpg",
+          "alt": "Dashboard view showing keyboard-accessible clean energy metric charts."
+
+        }
       }
     ],
     "gallery": [
       {
-        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+        "url": "/images/EE-3.jpg",
         "alt": "Colorful cocktails arranged on a bar."
       },
       {
-        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
+        "url": "/images/EE-4.jpg",
         "alt": "Bartender preparing a cocktail."
       },
       {
-        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
-        "alt": "A cocktail garnished with citrus and herbs."
+        "url": "/images/EE-5.jpg",
+        "alt": "A."
       }
     ]
   },
@@ -96,8 +108,12 @@
     "projectType": "Web Design",
     "projectDate": "Spring 2025",
     "description": "A fictitious non-profit website about the Hyrax.",
+    "upNextImage": {
+      "url": "/images/SS-main.jpg",
+      "alt": "Preview of my project Scoop Strong."
+    },
     "heroImage": {
-      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
+      "url": "/images/HH-main.jpg",
       "alt": "Bright workspace with a laptop and design materials."
     },
     "sections": [
@@ -107,7 +123,7 @@
           "Hyrax Haven is a website for a wildlife conservation organization dedicated to raising awareness about hyraxes. These mammals are small, often overlooked, and are native to Africa and the Middle East. The goal of the project was to transform a basic informational site into a modern digital platform that encourages users to learn about the species and the conservation challenges they face."
         ],
         "image": {
-          "url": "/images/hyrax/map-view.jpg",
+          "url": "/images/HH-1.jpg",
           "alt": "Accessible data visualization map with alternative tabular data views underneath."
         }
       },
@@ -116,20 +132,23 @@
         "paragraphs": [
           "Through research into non-profit websites and content strategy, I developed a site structure that prioritizes education, accessibility, and user engagement. The design organizes information into focused sections, features a clean layout, nature-inspired color palette, and structured typography that presents information in a way that is approachable and visually cohesive."
         ],
-        "image": null
+        "image": {
+          "url": "/images/HH-2.jpg",
+          "alt": "Accessible data visualization map with alternative tabular data views underneath."
+        }
       }
     ],
     "gallery": [
       {
-        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
+        "url": "/images/HH-3.jpg",
         "alt": "Colorful cocktails arranged on a bar."
       },
       {
-        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
+        "url": "/images/HH-4.jpg",
         "alt": "Bartender preparing a cocktail."
       },
       {
-        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
+        "url": "/images/HH-5.jpg",
         "alt": "A cocktail garnished with citrus and herbs."
       }
     ]
@@ -140,9 +159,13 @@
     "projectType": "Editorial Design",
     "projectDate": "Winter 2025",
     "description": "High-protein ice cream book and guide to the Ninja Creami appliance.",
+    "upNextImage": {
+      "url": "/images/splitli-main.jpg",
+      "alt": "Preview of my project Splitli."
+    },
     "heroImage": {
-      "url": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
-      "alt": "Bright workspace with a laptop and design materials."
+      "url": "/images/SS-main.jpg",
+      "alt": "Book cover mockup on a gray surface displaying the title and author."
     },
     "sections": [
       {
@@ -151,7 +174,7 @@
           "Scoop Strong is a custom recipe book I wrote and designed to help those on a fitness journey enjoy a sweet treat while also hitting their protein goals. The book helps users learn how to use the Ninja Creami while making high-protein ice cream recipes that support fitness goals. The goal of the project was to create a fun and practical guide that makes it easy to enjoy a treat while still focusing on balanced nutrition."
         ],
         "image": {
-          "url": "/images/scoop/menu.jpg",
+          "url": "/images/SS-1.png",
           "alt": "High-contrast digital menu board design with distinct visual hierarchy."
         }
       },
@@ -160,21 +183,24 @@
         "paragraphs": [
           "The book introduces the device, explains how it works, and walks readers through simple steps to create different recipes. I wrote the content to be clear and approachable so the recipes feel easy to follow and repeat. The design organizes information into introductory sections and recipe sections, and uses a clean layout that makes instructions easy to read."
         ],
-        "image": null
+        "image": {
+          "url": "/images/SS-2.jpg",
+          "alt": "An open book mockup showing how to use the Ninja Creami appliance and a troubleshooting guide."
+        }
       }
     ],
     "gallery": [
       {
-        "url": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=85",
-        "alt": "Colorful cocktails arranged on a bar."
+        "url": "/images/SS-3.jpg",
+        "alt": "An open book mockup showing recipe pages for different flavors of protein ice cream."
       },
       {
-        "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=1200&q=85",
-        "alt": "Bartender preparing a cocktail."
+        "url": "/images/SS-4.png",
+        "alt": "A recipe page featuring the recipe for Cosmic Brownie protein ice cream."
       },
       {
-        "url": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=85",
-        "alt": "A cocktail garnished with citrus and herbs."
+        "url": "/images/SS-5.jpg",
+        "alt": "An open book mockup featuring the introduction spread of the book."
       }
     ]
   },
@@ -184,6 +210,10 @@
     "projectType": "Web Design",
     "projectDate": "Spring 2026",
     "description": "A beginner-friendly website to help people get started on their fitness journey.",
+    "upNextImage": {
+      "url": "/images/BG-1.jpg",
+      "alt": "Preview of my project Bartender's Glossary."
+},
     "heroImage": {
       "url": "/images/splitli-main.jpg",
       "alt": "Splitli banner showing its logo and fitness training message over a weightlifting photograph."
@@ -216,11 +246,11 @@
         "alt": "Splitli gym website screenshot showing its footer over a weightlifting background."
       },
       {
-        "url": "/images/splitli-2.jpg",
+        "url": "/images/splitli-3.jpg",
         "alt": "Splitli website homepage with fitness messaging and a gym background."
       },
       {
-        "url": "/images/splitli-3.jpg",
+        "url": "/images/splitli-2.jpg",
         "alt": "Splitli website conclusion section with a call to learn key training terms."
       }
     ]

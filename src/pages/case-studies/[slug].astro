@@ -14,7 +14,7 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 const currentProjectIndex = projects.findIndex(({ slug }) => slug === project.slug);
 const nextProject = projects[(currentProjectIndex + 1) % projects.length];
-const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
+const nextProjectImage = project.upNextImage ?? nextProject.sections.find(({ image }) => image)?.image;
 ---
 
 <!doctype html>
@@ -113,7 +113,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
   .case-study-hero {
     position: relative;
     display: flex;
-    min-height: 23rem;
+    min-height: 30rem;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
@@ -131,7 +131,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
     width: 100%;
     height: 100%;
     inset: 0;
-    filter: brightness(0.4);
+    filter: brightness(0.3);
     object-fit: cover;
     object-position: center;
   }
@@ -145,14 +145,14 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
   :global(.case-study-hero .nav-link),
   :global(.case-study-hero .nav-logo),
   :global(.case-study-hero .theme-toggle) {
-    color: var(--background);
+    color: #ffffff;
   }
 
   .hero-copy {
     position: relative;
-    z-index: 1;
+    z-index: 10;
     width: min(34rem, 75%);
-    padding: 2.4rem 0 3.5rem;
+    padding: 2.4rem 0 10rem;
   }
 
   .hero-eyebrow {
@@ -360,7 +360,7 @@ const nextProjectImage = nextProject.sections.find(({ image }) => image)?.image;
 
     .hero-copy {
       width: 100%;
-      padding-bottom: 2.5rem;
+      padding-bottom: 3.5rem;
     }
 
     .hero-mark {
