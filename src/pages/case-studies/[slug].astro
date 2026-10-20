@@ -41,6 +41,7 @@ const nextProjectImage = project.upNextImage ?? nextProject.sections.find(({ ima
         </p>
         <h1>{project.title}</h1>
         <p class="hero-description">{project.description}</p>
+        {project.siteUrl && <a class="hero-site-link" href={project.siteUrl} target="_blank" rel="noopener noreferrer">Visit Page <span aria-hidden="true">→</span></a>}
       </div>
       {!project.heroImage && <span class="hero-mark" aria-hidden="true">✳</span>}
     </header>
@@ -187,6 +188,19 @@ const nextProjectImage = project.upNextImage ?? nextProject.sections.find(({ ima
     line-height: 1.5;
     font-weight: 300;
   }
+
+  .hero-site-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
 
   .hero-mark {
     position: absolute;
